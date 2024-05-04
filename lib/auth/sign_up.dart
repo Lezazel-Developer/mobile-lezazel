@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/auth/sign_in.dart';
 import 'package:lottie/lottie.dart';
@@ -34,11 +35,11 @@ class _SignUpState extends State<SignUp> {
             child: Stack(
               children: [
                 Positioned(
-                  top: -85,
-                  left: -50, 
+                  top: -40,
+                  left: 280,
                   child: Container(
-                    height: 230,
-                    width: 230,
+                    height: 180,
+                    width: 180,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -48,42 +49,19 @@ class _SignUpState extends State<SignUp> {
                         )
                       ],
                       color: Colors.white,
-                      borderRadius: const BorderRadius.all(Radius.circular(115)),
+                      borderRadius: const BorderRadius.all(Radius.circular(100)),
                     ),
                   ),
                 ),
 
                 Positioned(
-                  top: -100,
-                  left: -5,
+                  top: -50,
+                  left: -40,
                   child: Transform.rotate(
                     angle: 0.30,
                     child: Container(
                       height: 190,
-                      width: 240,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.30),
-                            blurRadius: 30,
-                            offset: const Offset(0, -10),
-                          )
-                        ],
-                        color: const Color(0xffFEA300),
-                        borderRadius: const BorderRadius.all(Radius.circular(100)),
-                      ),
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  top: -60,
-                  left: 60,
-                  child: Transform.rotate(
-                    angle: 0.25,
-                    child: Container(
-                      height: 190,
-                      width: 420,
+                      width: 190,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -95,23 +73,49 @@ class _SignUpState extends State<SignUp> {
                         color: const Color(0xff999999),
                         borderRadius: const BorderRadius.all(Radius.circular(100)),
                       ),
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  top: -75,
+                  left: 5,
+                  child: Transform.rotate(
+                    angle: 0.20,
+                    child: Container(
+                      height: 190,
+                      width: 420,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.30),
+                            blurRadius: 30,
+                            offset: const Offset(0, -10),
+                          )
+                        ],
+                        color: const Color(0xffFEA300),
+                        borderRadius: const BorderRadius.all(Radius.circular(100)),
+                      ),
 
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 60,
+                  top: 50,
+                  left:160,
+                  child: Text('Register', style: GoogleFonts.inriaSans(fontSize: 30, color: Colors.white),),
+                ),
+                Positioned(
+                  top: 211,
                   left: 200,
-                  child: Text('Register', style: GoogleFonts.inriaSans(fontSize: 34, color: Colors.black),),
-                )
-
+                  child: Container(
+                      child: Image.asset('images/ayam-removebg-preview.png', height: 250)
+                  ),
+                ),
               ],
             ),
           ),
-          Container(
-            alignment: Alignment.centerRight,
-          child: Image.asset('images/ayam-removebg-preview.png', height: 250)
-          ),
+
           Container(
 
             height: 500,

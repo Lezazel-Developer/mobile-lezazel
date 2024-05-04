@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/auth/sign_up.dart';
 import 'package:lezazel_flutter/screen/home_screen.dart';
@@ -96,18 +97,22 @@ class _SignUpState extends State<SignIn> {
                   ),
                 ),
                 Positioned(
-                  top: 60,
-                  left: 200,
-                  child: Text('Login', style: GoogleFonts.inriaSans(fontSize: 34, color: Colors.black),),
-                )
+                  top: 50,
+                  left: 175,
+                  child: Text('Login', style: GoogleFonts.inriaSans(fontSize: 30, color: Colors.black),),
+                ),
 
+                Positioned(
+                  top: 250,
+                  child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Image.asset('images/ayam_kecil.png', height: 200)
+                  ),
+                )
               ],
             ),
           ),
-          Container(
-              alignment: Alignment.centerLeft,
-              child: Image.asset('images/ayam_kecil.png', height: 200)
-          ),
+
 
               Container(
                 height: 500,
