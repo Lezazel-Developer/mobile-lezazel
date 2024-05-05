@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lezazel_flutter/auth/sign_up.dart';
 import 'package:lottie/lottie.dart';
-
 import '../auth/sign_in.dart';
 
 class WelcomeScreen extends StatelessWidget {
