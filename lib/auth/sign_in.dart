@@ -7,10 +7,10 @@ class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
   @override
-  State<SignIn> createState() => _SignUpState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignIn> {
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController passwordController =

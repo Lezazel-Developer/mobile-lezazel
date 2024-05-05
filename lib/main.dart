@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lezazel_flutter/screen/spalash_screen.dart';
+import 'package:lezazel_flutter/screen/splash_screen.dart';
 
 import 'auth/sign_in.dart';
 import 'auth/sign_up.dart';
