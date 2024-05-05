@@ -6,7 +6,6 @@ class CustomField extends StatelessWidget {
   final String hintText;
   final Icon prefixIcon;
   final Widget? suffixIcon;
-  final void Function(bool)? toggleVisibility;
   final TextEditingController? controller;
 
   const CustomField({
@@ -15,7 +14,6 @@ class CustomField extends StatelessWidget {
     required this.prefixIcon,
     this.suffixIcon,
     required this.hintText,
-    this.toggleVisibility,
     this.obscureText = false,
     this.controller,
   });
