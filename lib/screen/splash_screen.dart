@@ -7,7 +7,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
 
     Future.delayed(const Duration(seconds: 3)).then((_) {
       Navigator.of(context).pushAndRemoveUntil(
@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
 
     return Scaffold(
         body: Center(
-      child: Image.asset('images/splash.png'),
+      child: Image.asset('assets/images/splash.png'),
     ));
   }
 }

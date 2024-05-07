@@ -110,14 +110,14 @@ class _SignInState extends State<SignIn> {
                   top: 250,
                   child: Container(
                       alignment: Alignment.centerLeft,
-                      child: Image.asset('images/ayam_kecil.png', height: 200)),
+                      child: Image.asset('assets/images/ayam_kecil.png', height: 200)),
                 )
               ],
             ),
           ),
           Container(
             height: 500,
-            width: 500,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: const BorderRadius.only(
@@ -132,16 +132,18 @@ class _SignInState extends State<SignIn> {
                 )
               ],
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  CustomField(
+            child: Column(
+              children: [
+                Flexible(
+                  child: CustomField(
                     title: 'Email',
                     hintText: 'example@gmail.com',
                     prefixIcon: const Icon(Icons.email),
                     controller: emailController,
                   ),
-                  CustomField(
+                ),
+                Flexible(
+                  child: CustomField(
                     title: 'Password',
                     obscureText: isHidden,
                     prefixIcon: const Icon(Icons.key),
@@ -153,81 +155,75 @@ class _SignInState extends State<SignIn> {
                     controller: passwordController,
                     hintText: 'ssst!',
                   ),
-
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 25),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "forgot password?",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()),
-                          (route) => false);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffFEA300),
-                      fixedSize: const Size(370, 55),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 0, bottom: 30),
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 25),
                     child: TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/sign_up');
-                      },
-                      child: RichText(
-                        text: const TextSpan(
-                          text: "Dont have an account? ",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w200,
-                            color: Colors.black,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: 'Register',
-                              style: TextStyle(
-                                color: Color(0xffFEA300),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                      onPressed: () {},
+                      child: const Text(
+                        "forgot password?",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey,
                         ),
                       ),
                     ),
                   ),
-
-                ],
-              ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffFEA300),
+                    fixedSize: const Size(370, 55),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 0, bottom: 30),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/sign_up');
+                    },
+                    child: RichText(
+                      text: const TextSpan(
+                        text: "Dont have an account? ",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w200,
+                          color: Colors.black,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: 'Register',
+                            style: TextStyle(
+                              color: Color(0xffFEA300),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

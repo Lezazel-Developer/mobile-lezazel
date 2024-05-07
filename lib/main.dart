@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lezazel_flutter/screen/cart.dart';
+import 'package:lezazel_flutter/screen/home_screen.dart';
 import 'package:lezazel_flutter/screen/splash_screen.dart';
 
 import 'auth/sign_in.dart';
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/sign_in': (context) => const SignIn(),
         '/sign_up': (context) => const SignUp(),
+        '/home': (context) => const HomeScreen(),
+        '/cart': (context) => const CartScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Lezazel',

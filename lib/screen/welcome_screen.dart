@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lezazel_flutter/auth/sign_up.dart';
 import 'package:lottie/lottie.dart';
 import '../auth/sign_in.dart';
@@ -8,6 +9,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       body: ListView(children: [
         SafeArea(
@@ -19,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Lottie.asset(
-                    'assets/welcome.json',
+                    'assets/jsons/welcome.json',
                     width: 370,
                   ),
                 ),
