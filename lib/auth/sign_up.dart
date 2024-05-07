@@ -120,7 +120,8 @@ class _SignUpState extends State<SignUp> {
                 Positioned(
                   top: 211,
                   left: 200,
-                  child: Image.asset('assets/images/ayam_besar.png', height: 250),
+                  child:
+                      Image.asset('assets/images/ayam_besar.png', height: 250),
                 ),
               ],
             ),

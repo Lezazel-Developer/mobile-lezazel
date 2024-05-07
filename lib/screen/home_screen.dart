@@ -1,25 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/models/category.dart';
 import 'package:lezazel_flutter/models/product.dart';
 
-
 var selectedCategory = 0;
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -28,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
       // backgroundColor: Color(0xffE4D8C6),
       bottomNavigationBar: bottomNavigationBar(),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xff888888),
+        backgroundColor: const Color(0xff888888),
         onPressed: () {
           Navigator.of(context).pushNamed('/cart');
         },
-        child: Icon( Icons.shopping_cart),
+        child: const Icon(Icons.shopping_cart),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -44,30 +39,40 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 40),
               Container(
                 decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(
-                    color: Colors.black.withOpacity(.08),
-                    blurRadius: 10,
-                    offset: Offset(0, -10),
-                  )],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.08),
+                      blurRadius: 10,
+                      offset: const Offset(0, -10),
+                    )
+                  ],
                   color: Colors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(45)),
                 ),
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const SizedBox(height: 30),
                     buildSearch(),
-                    const SizedBox(height: 30,),
+                    const SizedBox(
+                      height: 30,
+                    ),
                     // categories(),
-                    const SizedBox(height: 8,),
-                    buildDivider(),
-                    const SizedBox(height: 15,),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    // buildDivider(),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     _products(),
-                    const SizedBox(height: 30,),
+                    const SizedBox(
+                      height: 30,
+                    ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -89,26 +94,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-          color: Color(0xffEEE4D6),
+          color: const Color(0xffEEE4D6),
           borderRadius: BorderRadius.circular(14),
-          boxShadow: [BoxShadow(
-              color: const Color(0xff35385A).withOpacity(.12),
-              blurRadius: 30,
-              offset: const Offset(0, 2)
-          )]
-      ),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xff111111).withOpacity(.3),
+                blurRadius: 10,
+                offset: const Offset(0, 5))
+          ]),
       child: Row(
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Color(0xfffea300),
-                borderRadius: BorderRadius.circular(100)
+                color: const Color(0xfffea300),
+                borderRadius: BorderRadius.circular(100)),
+            child: Image.asset(
+              'assets/images/${productmodel.image}',
+              height: 60,
+              width: 60,
             ),
-            child: Image.asset('assets/images/${productmodel.image}',
-              height: 50,
-              width: 50,),
           ),
-          const SizedBox(width: 20,),
+          const SizedBox(
+            width: 20,
+          ),
           Flexible(
             fit: FlexFit.tight,
             child: Column(
@@ -116,29 +124,31 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   productmodel.title,
-                  style: GoogleFonts.manrope(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   'Rp.${productmodel.price}',
-                  style: GoogleFonts.manrope(fontWeight: FontWeight.w100, fontSize: 16),
+                  style: GoogleFonts.manrope(
+                      fontWeight: FontWeight.w100, fontSize: 16),
                 ),
-
-
               ],
             ),
           ),
           Container(
             decoration: BoxDecoration(
-                color: Color(0xff999999),
-                borderRadius: BorderRadius.circular(8)
-            ),
+                color: const Color(0xff999999),
+                borderRadius: BorderRadius.circular(100)),
+            height: 45,
+            width: 45,
             child: InkWell(
-              onTap: () {},
-                child: Icon(Icons.add, color: Colors.white,)
-            ),
-              height: 30,
-              width: 30,),
+                onTap: () {},
+                child: const Icon(
+                  Icons.arrow_forward_ios_sharp,
+                  color: Colors.white,
+                )),
+          ),
         ],
       ),
     );
@@ -146,37 +156,33 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Container buildDivider() {
     return Container(
-      width: 270,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xffffffff).withOpacity(0.9),
-                    blurRadius: 20,
-                    offset: const Offset(5, 5),
-                  )
-                ]
-              ),
-                child: Divider(
-                  thickness: 1.0, color: Color(0xffffffff),
-                )
-            );
+        width: 270,
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: const Color(0xffffffff).withOpacity(0.9),
+            blurRadius: 20,
+            offset: const Offset(5, 5),
+          )
+        ]),
+        child: const Divider(
+          thickness: 1.0,
+          color: Color(0xffffffff),
+        ));
   }
-
-
-
-
 
   Container bottomNavigationBar() {
     return Container(
       height: 100,
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(
-          color: Colors.black.withOpacity(.03),
-          blurRadius: 30,
-          offset: Offset(0, -10),
-        )],
-        color: Color(0xffE6E6E6),
-        borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.03),
+            blurRadius: 30,
+            offset: const Offset(0, -10),
+          )
+        ],
+        color: const Color(0xffE6E6E6),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(45)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -201,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Text(
           label,
-          style: TextStyle(fontSize: 12),
+          style: const TextStyle(fontSize: 12),
         ),
       ],
     );
@@ -222,17 +228,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
       child: TextFormField(
           decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: const Icon(FeatherIcons.search),
-            prefixIconColor: const Color(0xffAAA8A8),
-            hintText: 'Search for partner xixi',
-            hintStyle: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: const Color(0xffAAA8A8),
-              height: 150 / 100,
-            ),
-          )),
+        border: InputBorder.none,
+        prefixIcon: const Icon(FeatherIcons.search),
+        prefixIconColor: const Color(0xffAAA8A8),
+        hintText: 'Search for partner xixi',
+        hintStyle: GoogleFonts.poppins(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xffAAA8A8),
+          height: 150 / 100,
+        ),
+      )),
     );
   }
 
@@ -241,7 +247,6 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,11 +258,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.grey[700],
                 ),
               ),
-              const Text(
+              Text(
                 'Hallo Name',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
+                style: GoogleFonts.poppins(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],
@@ -266,7 +271,8 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.pushNamed(context, '/my-profile');
             },
-            icon: Icon(Icons.account_circle_sharp, color: Color(0xff6b6a6a), size: 45),
+            icon: const Icon(Icons.account_circle_sharp,
+                color: Color(0xff6b6a6a), size: 45),
           ),
         ],
       ),
@@ -280,49 +286,48 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => GestureDetector(
-            onTap: (){
-              setState(() {
-                selectedCategory = index;
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    blurRadius: 5,
-                    offset: const Offset(2, 0),
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(10),
-                color: selectedCategory == index
-                    ? const Color(0xfffea300)
-                    : const Color(0xffB6B4B4),
-                border: selectedCategory == index
-                    ? Border.all(
-                    color: const Color(0xffb5b5b5).withOpacity(.22),
-                    width: 2)
-                    : null,
-              ),
-              child: Center(
-                child:
-                Text(
-                  Category.all()[index],
-                  style: GoogleFonts.manrope(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16,
+                onTap: () {
+                  setState(() {
+                    selectedCategory = index;
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 5,
+                        offset: const Offset(2, 0),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(10),
                     color: selectedCategory == index
-                        ? Colors.white
-                        : const Color(0xff3f3e3f).withOpacity(.3),
+                        ? const Color(0xfffea300)
+                        : const Color(0xffB6B4B4),
+                    border: selectedCategory == index
+                        ? Border.all(
+                            color: const Color(0xffb5b5b5).withOpacity(.22),
+                            width: 2)
+                        : null,
+                  ),
+                  child: Center(
+                    child: Text(
+                      Category.all()[index],
+                      style: GoogleFonts.manrope(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                        color: selectedCategory == index
+                            ? Colors.white
+                            : const Color(0xff3f3e3f).withOpacity(.3),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
           separatorBuilder: (context, index) => const SizedBox(
-            width: 20,
-          ),
+                width: 20,
+              ),
           itemCount: Category.all().length),
     );
   }

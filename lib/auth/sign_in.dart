@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lezazel_flutter/screen/home_screen.dart';
 import 'package:lezazel_flutter/widget/form.dart';
 
 class SignIn extends StatefulWidget {
@@ -110,7 +109,8 @@ class _SignInState extends State<SignIn> {
                   top: 250,
                   child: Container(
                       alignment: Alignment.centerLeft,
-                      child: Image.asset('assets/images/ayam_kecil.png', height: 200)),
+                      child: Image.asset('assets/images/ayam_kecil.png',
+                          height: 200)),
                 )
               ],
             ),

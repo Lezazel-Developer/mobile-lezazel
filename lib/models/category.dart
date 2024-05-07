@@ -13,26 +13,23 @@ class Category {
   }
 }
 
-
-
-
 Container bottomNavigationBar() {
   return Container(
     height: 100,
     decoration: BoxDecoration(
-      boxShadow: [BoxShadow(
-        color: Colors.black.withOpacity(.03),
-        blurRadius: 30,
-        offset: Offset(0, -10),
-      )],
-      color: Colors.white,
-      borderRadius: BorderRadius.vertical(top: Radius.circular(45)),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(.03),
+          blurRadius: 30,
+          offset: const Offset(0, -10),
+        )
       ],
+      color: Colors.white,
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(45)),
+    ),
+    child: const Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [],
     ),
   );
 }
