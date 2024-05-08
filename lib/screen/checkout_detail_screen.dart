@@ -1,38 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:provider/provider.dart';
 import 'package:lezazel_flutter/thema.dart';
 
 
-class CheckoutPage extends StatefulWidget {
+class CheckoutScreen extends StatefulWidget {
+  const CheckoutScreen({super.key});
+
   @override
-  _CheckoutPageState createState() => _CheckoutPageState();
+  _CheckoutScreenState createState() => _CheckoutScreenState();
 }
 
-class _CheckoutPageState extends State<CheckoutPage> {
+class _CheckoutScreenState extends State<CheckoutScreen> {
   bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    // CartProvider cartProvider = Provider.of<CartProvider>(context);
-    // TransactionProvider transactionProvider =
-    // Provider.of<TransactionProvider>(context);
-    // AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleCheckout() async {
       setState(() {
         isLoading = true;
       });
-      //
-      // if (await transactionProvider.checkout(
-      //   authProvider.user.token,
-      //   cartProvider.carts,
-      //   cartProvider.totalPrice(),
-      // )) {
-      //   cartProvider.carts = [];
-      //   Navigator.pushNamedAndRemoveUntil(
-      //       context, '/checkout-success', (route) => false);
-      // }
 
       setState(() {
         isLoading = false;
@@ -41,10 +28,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     Widget header() {
       return AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: backgroundColor,
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Checkout Details',
         ),
       );
@@ -56,41 +43,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
           horizontal: defaultMargin,
         ),
         children: [
-          // NOTE: LIST ITEMS
-          Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'List Items',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
-                  ),
-                ),
-                Column(
-                  children: [
-                    Text('arewfjk ;ojbdsgv'),
-                    Text('arewfjk ;ojbdsgv'),
-                    Text('arewfjk ;ojbdsgv'),
-                    Text('arewfjk ;ojbdsgv'),
-                  ]
-                ),
-              ],
-            ),
-          ),
-
           // NOTE: ADDRESS DETAILS
           Container(
             margin: EdgeInsets.only(
               top: defaultMargin,
             ),
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Color(0xff555555),
+              color: const Color(0xff555555),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -98,17 +58,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
               children: [
                 Text(
                   'Address Details',
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: medium,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
                   children: [
-                    Column(
+                    const Column(
                       children: [
                         Icon(Icons.home_work),
                         SizedBox(
@@ -117,7 +77,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         Icon(FeatherIcons.mapPin),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
                     Column(
@@ -132,7 +92,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                         Text(
                           'Adidas Core',
-                          style: primaryTextStyle.copyWith(
+                          style: TextStyle(
                             fontWeight: medium,
                           ),
                         ),
@@ -148,7 +108,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                         Text(
                           'Marsemoon',
-                          style: primaryTextStyle.copyWith(
+                          style: TextStyle(
                             fontWeight: medium,
                           ),
                         ),
@@ -165,9 +125,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
             margin: EdgeInsets.only(
               top: defaultMargin,
             ),
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Color(0xff555555),
+              color: const Color(0xff555555),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -175,12 +135,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
               children: [
                 Text(
                   'Payment Summary',
-                  style: primaryTextStyle.copyWith(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: medium,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
@@ -194,13 +154,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                     Text(
                       '2 Items',
-                      style: primaryTextStyle.copyWith(
+                      style: TextStyle(
                         fontWeight: medium,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
@@ -214,13 +174,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                     Text(
                       '\$jyv uguy khubkhu',
-                      style: primaryTextStyle.copyWith(
+                      style: TextStyle(
                         fontWeight: medium,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
@@ -234,20 +194,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                     Text(
                       'Free',
-                      style: primaryTextStyle.copyWith(
+                      style: TextStyle(
                         fontWeight: medium,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                   color: Color(0xff2E3141),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -275,16 +235,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
           SizedBox(
             height: defaultMargin,
           ),
-          Divider(
+          const Divider(
             thickness: 1,
             color: Color(0xff2E3141),
           ),
           isLoading
               ? Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               bottom: 30,
             ),
-            child: Center(
+            child: const Center(
               child: CircularProgressIndicator(),
             ),
           )
@@ -297,14 +257,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
             child: TextButton(
               onPressed: handleCheckout,
               style: TextButton.styleFrom(
-                backgroundColor: Color(0xffFEA300),
+                backgroundColor: buttonColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
               child: Text(
                 'Checkout Now',
-                style: primaryTextStyle.copyWith(
+                style: TextStyle(
+                  color: Colors.white,
                   fontSize: 16,
                   fontWeight: semiBold,
                 ),
@@ -316,8 +277,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xff888888),
-      // appBar: header(),
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        surfaceTintColor: backgroundColor,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'Checkout Details',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: medium,
+          ),
+        ),
+      ),
       body: content(),
     );
   }

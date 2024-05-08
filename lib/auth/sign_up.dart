@@ -205,7 +205,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/sign_in');
+                      Navigator.pushReplacementNamed(context, '/sign-in');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xffFEA300),
@@ -230,7 +230,7 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.only(top: 0, bottom: 30),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/sign_in');
+                        Navigator.pushReplacementNamed(context, '/sign-in');
                       },
                       child: RichText(
                         text: const TextSpan(

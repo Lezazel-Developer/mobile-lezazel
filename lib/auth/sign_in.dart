@@ -200,7 +200,7 @@ class _SignInState extends State<SignIn> {
                   padding: const EdgeInsets.only(top: 0, bottom: 30),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/sign_up');
+                      Navigator.pushReplacementNamed(context, '/sign-up');
                     },
                     child: RichText(
                       text: const TextSpan(

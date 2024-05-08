@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lezazel_flutter/auth/sign_up.dart';
 import 'package:lottie/lottie.dart';
-import '../auth/sign_in.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -40,12 +38,9 @@ class WelcomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.w100),
                 ),
                 const SizedBox(height: 50),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => const SignUp()),
-                        (route) => false);
-                  },
+                ElevatedButton(onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/sign-up');
+                },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xffFEA300),
                     fixedSize: const Size(370, 50),
@@ -65,9 +60,7 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 27),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => const SignIn()),
-                        (route) => false);
+                    Navigator.pushReplacementNamed(context, '/sign-in');
                   },
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(width: 2, color: Colors.grey),

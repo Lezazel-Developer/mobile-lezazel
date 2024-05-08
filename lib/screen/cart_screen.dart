@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/product.dart';
@@ -24,13 +22,31 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff888888),
-        onPressed: () {
-          Navigator.of(context).pushNamed('/checkout');
-        },
-        child: const Icon(Icons.shopping_bag_outlined),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            tooltip: 'Back to Home',
+            backgroundColor: const Color(0xff888888),
+            onPressed: () {
+              Navigator.popUntil(context, ModalRoute.withName('/home'));
+            },
+            child: const Icon(Icons.home),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton(
+            tooltip: 'Order',
+            backgroundColor: const Color(0xff888888),
+            onPressed: () {
+              Navigator.pushNamed(context, '/checkout-product');
+            },
+            child: const Icon(Icons.shopping_cart),
+          ),
+        ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+
       appBar: AppBar(
         surfaceTintColor: Colors.white,
         leading: IconButton(
@@ -77,7 +93,7 @@ class _CartScreenState extends State<CartScreen> {
       children: [
         GestureDetector(
           onTap: () {
-            // Tambahkan logika untuk menampilkan detail produk
+
           },
           child: Container(
             padding: const EdgeInsets.all(30),
@@ -124,7 +140,7 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Column(
                   children: [
                     Container(

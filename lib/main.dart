@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lezazel_flutter/screen/cart.dart';
-import 'package:lezazel_flutter/screen/checkout.dart';
+import 'package:lezazel_flutter/screen/cart_screen.dart';
+import 'package:lezazel_flutter/screen/checkout_detail_screen.dart';
+import 'package:lezazel_flutter/screen/detail_prduct_screen.dart';
 import 'package:lezazel_flutter/screen/home_screen.dart';
 import 'package:lezazel_flutter/screen/splash_screen.dart';
 
@@ -18,12 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => const CartScreen(),
-        '/sign_in': (context) => const SignIn(),
-        '/sign_up': (context) => const SignUp(),
+        '/': (context) => const CheckoutScreen(),
+        '/sign-in': (context) => const SignIn(),
+        '/sign-up': (context) => const SignUp(),
         '/home': (context) => const HomeScreen(),
         '/cart': (context) => const CartScreen(),
-        '/checkout': (context) => CheckoutPage(),
+        '/checkout-detail': (context) => const CheckoutScreen(),
+        '/detail-product': (context) => const DetailProductScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Lezazel',
