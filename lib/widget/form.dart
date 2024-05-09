@@ -20,17 +20,56 @@ class CustomField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-      child: TextField(
-        obscureText: obscureText,
-        controller: controller,
-        decoration: InputDecoration(
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          labelText: title,
-          hintText: hintText,
-          border: const UnderlineInputBorder(),
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 50,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Expanded(
+                  child: TextFormField(
+                    controller: controller,
+                    obscureText: obscureText,
+                    decoration: InputDecoration(
+                      prefixIcon: prefixIcon,
+                      suffixIcon: suffixIcon,
+                      hintText: hintText,
+                      hintStyle: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

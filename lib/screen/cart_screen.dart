@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lezazel_flutter/thema.dart';
 
-import '../models/product.dart';
+import '../models/product-model.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -22,6 +23,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -32,22 +34,22 @@ class _CartScreenState extends State<CartScreen> {
             onPressed: () {
               Navigator.popUntil(context, ModalRoute.withName('/home'));
             },
-            child: const Icon(Icons.home),
+            child: const Icon(Icons.home, color: Colors.black,),
           ),
           const SizedBox(height: 16),
           FloatingActionButton(
             tooltip: 'Order',
             backgroundColor: const Color(0xff888888),
             onPressed: () {
-              Navigator.pushNamed(context, '/checkout-product');
+              Navigator.pushNamed(context, '/checkout-detail');
             },
-            child: const Icon(Icons.shopping_cart),
+            child: const Icon(Icons.shopping_cart, color: Colors.black),
           ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         surfaceTintColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -62,11 +64,15 @@ class _CartScreenState extends State<CartScreen> {
                 fontWeight: FontWeight.w700)),
       ),
       body: SafeArea(
+        top: false,
+        bottom: false,
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               _products(),
               const SizedBox(
                 height: 30,
@@ -92,9 +98,7 @@ class _CartScreenState extends State<CartScreen> {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () {
-
-          },
+          onTap: () {},
           child: Container(
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
@@ -140,12 +144,14 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Column(
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          color: const Color(0xff999999),
+                          color: const Color(0xffE2E63B),
                           borderRadius: BorderRadius.circular(8)),
                       height: 30,
                       width: 30,
@@ -166,7 +172,9 @@ class _CartScreenState extends State<CartScreen> {
                             color: Colors.white,
                           )),
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       '${quantities[index]}',
                       style: GoogleFonts.manrope(
@@ -177,7 +185,7 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          color: const Color(0xff999999),
+                          color: const Color(0xff2BAB29),
                           borderRadius: BorderRadius.circular(8)),
                       height: 30,
                       width: 30,

@@ -4,8 +4,9 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/thema.dart';
 
-class DetailProductScreen extends StatelessWidget {
+import '../models/address-detail-tems-model.dart';
 
+class DetailProductScreen extends StatelessWidget {
   const DetailProductScreen({super.key});
 
   @override
@@ -15,31 +16,31 @@ class DetailProductScreen extends StatelessWidget {
       backgroundColor: backgroundColor,
       floatingActionButton: FloatingActionButton(
         tooltip: 'Order',
-        backgroundColor: buttonColor,
+        backgroundColor: const Color(0xff8E8D8B),
         onPressed: () {
           Navigator.pushNamed(context, '/cart');
         },
-        child: const Icon(Icons.shopping_cart, color: Colors.white),
+        child: const Icon(Icons.shopping_cart, color: Colors.black),
       ),
       body: NestedScrollView(
           headerSliverBuilder: (context, isScrolled) {
             return [
               SliverAppBar(
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios_new),
+                  icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
-                backgroundColor: Color(0xfffea300),
+                backgroundColor: const Color(0xfffea300),
                 pinned: true,
-                expandedHeight: 270,
+                expandedHeight: 300,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.asset(
                     'assets/images/detail_image.jpg',
                     fit: BoxFit.cover,
                   ),
-                  title: const Text('Lezazel'),
+                  title: const Text('Nama Product'),
                   titlePadding: const EdgeInsets.only(left: 16, bottom: 16),
                 ),
               )
@@ -56,7 +57,7 @@ class DetailProductScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.money_outlined,
                             color: Colors.black,
                           ),
@@ -67,92 +68,51 @@ class DetailProductScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-
-
                       Text(
                         'Stock : 86',
                         style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w200
-                        ),
+                            fontSize: 16, fontWeight: FontWeight.w200),
                       ),
-
                     ],
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 10),
                   Container(
+                    margin: EdgeInsets.only(
+                      top: defaultMargin,
+                    ),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: altColor,
-                      borderRadius: BorderRadius.circular(10.0),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ]
+                          color: Colors.black.withOpacity(.20),
+                          blurRadius: 10,
+                          offset: const Offset(0, 10),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(Icons.question_answer, color: Colors.black),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: Text(maxLines: 6,
-                              'Talk time (3g/WCDMA): up to 26 hou nVideo playbacInternet use time (Wi-Fi): up to 13 hoursk: up to 13 hoursrs Fast charging: Fast charging: up to 7 hours of use from only 15 minutes of charging up to 7 hours of use from only 15 minutes of charging',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.fastfood_rounded, color: Colors.black, size: 20),
+                            Text(
+                              'Address Details',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: medium,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Text('alham dulillahi robbil aalamiin, arrohmaanirrohiim maalikiyaumiddiin iyya kana\' budu waiyyakverv a nastaiin ')
+                      ],
                     ),
-                  )
-
-                  // Table(
-                  //   columnWidths: const {1: FractionColumnWidth(0.7)},
-                  //   children: const [
-                  //     TableRow(
-                  //         children: [
-                  //           Icon(Icons.question_answer),
-                  //           Padding(
-                  //             padding: EdgeInsets.symmetric(vertical: 4),
-                  //             child: Text('Talk time (3g/WCDMA): up to 26 hours\nInternet use time (Wi-Fi): up to 13 hours\nInternet use time (LTE): up to 13 hours\nVideo playback: up to 13 hours\nAudio playback (via headset): up to 110 hours\nFast charging: up to 7 hours of use from only 15 minutes of charging'),
-                  //           ),
-                  //         ]
-                  //     ),
-                  //
-                  //   ],
-                  // ),
-
-                  // SizedBox(
-                  //     width: double.infinity,
-                  //     child: ElevatedButton(
-                  //       style: ElevatedButton.styleFrom(
-                  //         backgroundColor: Theme.of(context).primaryColorLight,
-                  //         foregroundColor: Colors.white,
-                  //         shape: const BeveledRectangleBorder(
-                  //           borderRadius: BorderRadius.all(
-                  //             Radius.circular(8),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       onPressed: () {
-                  //         ScaffoldMessenger.of(context).showSnackBar(
-                  //           const SnackBar(
-                  //             content: Text('Added to Cart'),
-                  //           ),
-                  //         );
-                  //       },
-                  //       child: const Text('Beli'),
-                  //
-                  //     )
-                  // ),
+                  ),
                 ],
               ),
             ),

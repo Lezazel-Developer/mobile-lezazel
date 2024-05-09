@@ -38,9 +38,10 @@ class WelcomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.w100),
                 ),
                 const SizedBox(height: 50),
-                ElevatedButton(onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/sign-up');
-                },
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/sign-up');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xffFEA300),
                     fixedSize: const Size(370, 50),

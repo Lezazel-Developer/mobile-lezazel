@@ -16,7 +16,8 @@ class ProductModel {
 var products = [
   const ProductModel(
       title: 'Lunak Bakar', image: 'chicken-breast.png', price: '20.000'),
-  const ProductModel(title: 'Lunak Penyet', image: 'chicken-leg.png', price: '30.000'),
+  const ProductModel(
+      title: 'Lunak Penyet', image: 'chicken-leg.png', price: '30.000'),
   const ProductModel(
       title: 'Lunak Goreng', image: 'chicken-wings.png', price: '10.000'),
   const ProductModel(

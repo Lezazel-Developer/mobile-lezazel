@@ -18,6 +18,9 @@ dependencies:
   provider: ^6.1.2
   flutter_feather_icons: ^2.0.0+1
   flutter_svg: ^2.0.10+1
+  another_flushbar: ^1.12.30
+  persistent_bottom_nav_bar: ^5.0.2
+  water_drop_nav_bar: ^2.2.1
 
 dev_dependencies:
   flutter_test:

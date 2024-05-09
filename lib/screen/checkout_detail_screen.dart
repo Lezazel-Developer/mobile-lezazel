@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lezazel_flutter/models/payment-items-model.dart';
+import 'package:lezazel_flutter/screen/checkout_success.dart';
 import 'package:lezazel_flutter/thema.dart';
+import 'package:lezazel_flutter/widget/button.dart';
+import 'package:lottie/lottie.dart';
 
+import '../models/address-detail-tems-model.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -15,7 +21,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     handleCheckout() async {
       setState(() {
         isLoading = true;
@@ -26,31 +31,90 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       });
     }
 
-    Widget header() {
-      return AppBar(
-        backgroundColor: backgroundColor,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          'Checkout Details',
-        ),
-      );
-    }
-
     Widget content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
-        ),
+      return Column(
         children: [
-          // NOTE: ADDRESS DETAILS
+          Container(
+            margin: EdgeInsets.only(
+              top: defaultMargin,
+            ),
+            padding: const EdgeInsets.all(30),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.20),
+                  blurRadius: 10,
+                  offset: const Offset(0, 10),
+                )
+              ],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 90,
+                  height: 90,
+                  decoration: BoxDecoration(
+                      color: const Color(0xfffea300),
+                      borderRadius: BorderRadius.circular(100),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.20),
+                          blurRadius: 10,
+                          offset: const Offset(0, 10),
+                        )
+                      ]),
+                  child: Image.asset(
+                    'assets/images/chicken-leg.png',
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Chicken Leg',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'Rp. 20.000',
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 50,
+                ),
+                const Text(
+                  'x1',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+              ],
+            ),
+          ),
+
           Container(
             margin: EdgeInsets.only(
               top: defaultMargin,
             ),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xff555555),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.20),
+                  blurRadius: 10,
+                  offset: const Offset(0, 10),
+                )
+              ],
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -66,55 +130,18 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 const SizedBox(
                   height: 12,
                 ),
-                Row(
-                  children: [
-                    const Column(
-                      children: [
-                        Icon(Icons.home_work),
-                        SizedBox(
-                          height: 35,
-                        ),
-                        Icon(FeatherIcons.mapPin),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Store Location',
-                          style: secondaryTextStyle.copyWith(
-                            fontSize: 12,
-                            fontWeight: light,
-                          ),
-                        ),
-                        Text(
-                          'Adidas Core',
-                          style: TextStyle(
-                            fontWeight: medium,
-                          ),
-                        ),
-                        SizedBox(
-                          height: defaultMargin,
-                        ),
-                        Text(
-                          'Your Address',
-                          style: secondaryTextStyle.copyWith(
-                            fontSize: 12,
-                            fontWeight: light,
-                          ),
-                        ),
-                        Text(
-                          'Marsemoon',
-                          style: TextStyle(
-                            fontWeight: medium,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                const AddressDetailItem(
+                  title: 'Lezazel Restaurant',
+                  subtitle: 'Resaturant Location',
+                  icon: Icons.home_work,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const AddressDetailItem(
+                  title: 'Samping Unpad, Bandung',
+                  subtitle: 'Your Address',
+                  icon: FeatherIcons.mapPin,
                 ),
               ],
             ),
@@ -127,7 +154,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xff555555),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.20),
+                  blurRadius: 10,
+                  offset: const Offset(0, 10),
+                )
+              ],
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -143,69 +176,23 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 const SizedBox(
                   height: 12,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Product Quantity',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      '2 Items',
-                      style: TextStyle(
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ],
+                const PaymentItem(
+                  title: 'Product Quantity',
+                  price: '2 items',
                 ),
                 const SizedBox(
-                  height: 12,
+                  height: 15,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Product Price',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      '\$jyv uguy khubkhu',
-                      style: TextStyle(
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ],
+                const PaymentItem(
+                  title: 'Product Price',
+                  price: '55.000',
                 ),
                 const SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Shipping',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      'Free',
-                      style: TextStyle(
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 12,
+                  height: 25,
                 ),
                 const Divider(
                   thickness: 1,
-                  color: Color(0xff2E3141),
+                  color: Color(0xff999999),
                 ),
                 const SizedBox(
                   height: 10,
@@ -220,7 +207,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                     ),
                     Text(
-                      '\$itfvyt jubh',
+                      '55.000',
                       style: priceTextStyle.copyWith(
                         fontWeight: semiBold,
                       ),
@@ -237,61 +224,54 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           ),
           const Divider(
             thickness: 1,
-            color: Color(0xff2E3141),
+            color: Color(0xff999999),
           ),
           isLoading
               ? Container(
-            margin: const EdgeInsets.only(
-              bottom: 30,
-            ),
-            child: const Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
-              : Container(
-            height: 50,
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(
-              vertical: defaultMargin,
-            ),
-            child: TextButton(
-              onPressed: handleCheckout,
-              style: TextButton.styleFrom(
-                backgroundColor: buttonColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                'Checkout Now',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: semiBold,
-                ),
-              ),
-            ),
-          ),
+                  margin: const EdgeInsets.only(
+                    bottom: 30,
+                  ),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : CustomButton(title: 'Chekout Now', onPressed: () {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CheckoutSuccessScreen()));
+                  setState(() {
+                    isLoading = false;
+                  });
+          }),
+          Lottie.asset('assets/jsons/check-out.json', width: 400),
         ],
       );
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: const Color(0xffF4F2EF),
       appBar: AppBar(
-        backgroundColor: backgroundColor,
-        surfaceTintColor: backgroundColor,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Checkout Details',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
+        backgroundColor: const Color(0xffF4F2EF),
+        surfaceTintColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
+        title: Text('Checkout Detail',
+            style: GoogleFonts.poppins(
+                color: const Color(0xff35385A),
+                fontSize: 24,
+                fontWeight: FontWeight.w700)),
       ),
-      body: content(),
+      body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          child: content()),
     );
   }
 }
