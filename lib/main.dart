@@ -4,8 +4,9 @@ import 'package:lezazel_flutter/screen/cart_screen.dart';
 import 'package:lezazel_flutter/screen/checkout_detail_screen.dart';
 import 'package:lezazel_flutter/screen/checkout_success.dart';
 import 'package:lezazel_flutter/screen/detail_prduct_screen.dart';
-import 'package:lezazel_flutter/screen/favorite_screen.dart';
+import 'package:lezazel_flutter/home/favorite_page.dart';
 import 'package:lezazel_flutter/screen/home_screen.dart';
+import 'package:lezazel_flutter/screen/profile_screen.dart';
 import 'package:lezazel_flutter/screen/splash_screen.dart';
 
 import 'auth/sign-in-new.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => const SplashScreen(),
         '/sign-in': (context) => const SignInScreen(),
         '/sign-up': (context) => const SignUpScreen(),
         '/home': (context) => const HomeScreen(),
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
         '/detail-product': (context) => const DetailProductScreen(),
         '/checkout-detail': (context) => const CheckoutScreen(),
         '/favorite': (context) => const FavoriteScreen(),
+        '/my-profile': (context) => const EditProfilePage(),
+        '/checkout-success': (context) => const CheckoutSuccessScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Lezazel',

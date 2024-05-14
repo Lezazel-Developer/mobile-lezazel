@@ -1,16 +1,17 @@
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:lezazel_flutter/thema.dart';
 
 class CheckoutSuccessScreen extends StatelessWidget {
+  const CheckoutSuccessScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Checkout Success',
         ),
         elevation: 0,
@@ -26,7 +27,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
               'assets/images/shopping-cart.png',
               width: 150,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
@@ -36,7 +37,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Text(
@@ -74,7 +75,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
             Container(
               width: 196,
               height: 44,
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 12,
               ),
               child: TextButton(
@@ -83,12 +84,13 @@ class CheckoutSuccessScreen extends StatelessWidget {
                     flushbarStyle: FlushbarStyle.GROUNDED,
                     flushbarPosition: FlushbarPosition.TOP,
                     title: "Hello Yudi Oli Samping",
-                    message: "Thank you for your order! We will process it as soon as possible.\n happy nice day🥳",
-                    duration: Duration(seconds: 3),
+                    message: "Transac",
+                    duration: const Duration(seconds: 3),
                     isDismissible: false,
-                  )..show(context); },
+                  ).show(context);
+                },
                 style: TextButton.styleFrom(
-                  backgroundColor: Color(0xffB7B6BF),
+                  backgroundColor: const Color(0xffB7B6BF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -98,7 +100,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: semiBold,
-                    color: Color(0xff777777),
+                    color: const Color(0xff777777),
                   ),
                 ),
               ),
@@ -109,7 +111,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xffEEEEEE),
+      backgroundColor: const Color(0xffEEEEEE),
       // appBar: header(), // You can uncomment this if you want the AppBar
       body: content(),
     );

@@ -18,6 +18,9 @@ class AddressDetailItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const SizedBox(
+          width: 15,
+        ),
         Icon(icon),
         const SizedBox(
           width: 20,

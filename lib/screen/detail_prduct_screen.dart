@@ -1,13 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/thema.dart';
 
-import '../models/address-detail-tems-model.dart';
 
-class DetailProductScreen extends StatelessWidget {
+class DetailProductScreen extends StatefulWidget {
   const DetailProductScreen({super.key});
+
+  @override
+  State<DetailProductScreen> createState() => _DetailProductScreenState();
+}
+
+class _DetailProductScreenState extends State<DetailProductScreen> {
+
+  bool isFavorite = false;
+  void _toggleFavorite() {
+    setState(() {
+      isFavorite = !isFavorite;
+      if (isFavorite) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            showCloseIcon: true,
+            content: Text('You liked this product'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            showCloseIcon: true,
+            content: Text('You unliked this product'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +46,17 @@ class DetailProductScreen extends StatelessWidget {
         tooltip: 'Order',
         backgroundColor: const Color(0xff8E8D8B),
         onPressed: () {
-          Navigator.pushNamed(context, '/cart');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('You order this product'),
+              action: SnackBarAction(
+                label: 'View Cart',
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cart');
+                },
+              ),
+            ),
+          );
         },
         child: const Icon(Icons.shopping_cart, color: Colors.black),
       ),
@@ -27,11 +65,20 @@ class DetailProductScreen extends StatelessWidget {
             return [
               SliverAppBar(
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
+                  icon:
+                      const Icon(Icons.arrow_back_ios_new, color: Colors.white),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
+                actions: [
+                  Container(
+                    margin:  const EdgeInsets.symmetric(horizontal: 16),
+                    child: GestureDetector(
+                        onTap: _toggleFavorite,
+                        child: Icon(isFavorite ? Icons.favorite : Icons.favorite_outline, color: const Color(0xffFEA300), size: 30,)),
+                  ),
+                ],
                 backgroundColor: const Color(0xfffea300),
                 pinned: true,
                 expandedHeight: 300,
@@ -44,6 +91,7 @@ class DetailProductScreen extends StatelessWidget {
                   titlePadding: const EdgeInsets.only(left: 16, bottom: 16),
                 ),
               )
+
             ];
           },
           body: SingleChildScrollView(
@@ -96,7 +144,8 @@ class DetailProductScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.fastfood_rounded, color: Colors.black, size: 20),
+                            const Icon(Icons.fastfood_rounded,
+                                color: Colors.black, size: 20),
                             Text(
                               'Address Details',
                               style: TextStyle(
@@ -109,7 +158,8 @@ class DetailProductScreen extends StatelessWidget {
                         const SizedBox(
                           height: 12,
                         ),
-                        Text('alham dulillahi robbil aalamiin, arrohmaanirrohiim maalikiyaumiddiin iyya kana\' budu waiyyakverv a nastaiin ')
+                        const Text(
+                            'alham dulillahi robbil aalamiin, arrohmaanirrohiim maalikiyaumiddiin iyya kana\' budu waiyyakverv a nastaiin ')
                       ],
                     ),
                   ),
@@ -119,4 +169,7 @@ class DetailProductScreen extends StatelessWidget {
           )),
     );
   }
+
+
 }
+

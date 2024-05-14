@@ -34,7 +34,10 @@ class _CartScreenState extends State<CartScreen> {
             onPressed: () {
               Navigator.popUntil(context, ModalRoute.withName('/home'));
             },
-            child: const Icon(Icons.home, color: Colors.black,),
+            child: const Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
           ),
           const SizedBox(height: 16),
           FloatingActionButton(

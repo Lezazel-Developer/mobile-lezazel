@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/models/payment-items-model.dart';
-import 'package:lezazel_flutter/screen/checkout_success.dart';
 import 'package:lezazel_flutter/thema.dart';
-import 'package:lezazel_flutter/widget/button.dart';
 import 'package:lottie/lottie.dart';
 
-import '../models/address-detail-tems-model.dart';
+import '../widget/adress_detail_item.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -17,8 +15,11 @@ class CheckoutScreen extends StatefulWidget {
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  final TextEditingController _addressController = TextEditingController();
+
   bool isLoading = false;
 
+  final _focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     handleCheckout() async {
@@ -135,13 +136,34 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   subtitle: 'Resaturant Location',
                   icon: Icons.home_work,
                 ),
-                const SizedBox(
-                  height: 15,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Image.asset(
+                    'assets/images/icon_line.png',
+                    height: 30,
+                  ),
                 ),
-                const AddressDetailItem(
-                  title: 'Samping Unpad, Bandung',
-                  subtitle: 'Your Address',
-                  icon: FeatherIcons.mapPin,
+                GestureDetector(
+                  onTap: () => _focusNode.unfocus(),
+                  child: TextFormField(
+                    controller: _addressController,
+                    focusNode: _focusNode,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(FeatherIcons.mapPin),
+                      hintText: '|  Enter your address..',
+                      border: UnderlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -235,22 +257,42 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     child: CircularProgressIndicator(),
                   ),
                 )
-              : CustomButton(title: 'Chekout Now', onPressed: () {
+              :Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
                   setState(() {
                     isLoading = true;
                   });
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CheckoutSuccessScreen()));
+                  Navigator.pushNamed(context, '/checkout-success');
                   setState(() {
                     isLoading = false;
                   });
-          }),
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: lezazelColor,
+                  fixedSize: const Size(380, 45),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                child: const Text(
+                  'Checkout Now',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            ),
+          ),
           Lottie.asset('assets/jsons/check-out.json', width: 400),
         ],
       );
     }
+
 
     return Scaffold(
       backgroundColor: const Color(0xffF4F2EF),

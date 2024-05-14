@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Category {
   static String paha = "Paha ";
   static String sayap = "Sayap";
@@ -12,5 +10,3 @@ class Category {
     return [paha, sayap, dada, ceker, pala, bulu];
   }
 }
-
-
