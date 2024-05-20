@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/thema.dart';
@@ -105,7 +106,7 @@ class _CartScreenState extends State<CartScreen> {
           child: Container(
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-                color: const Color(0xffFDFBF6),
+                color: cardColor,
                 borderRadius: BorderRadius.circular(14),
                 boxShadow: [
                   BoxShadow(
@@ -115,14 +116,18 @@ class _CartScreenState extends State<CartScreen> {
                 ]),
             child: Row(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: const Color(0xfffea300),
-                      borderRadius: BorderRadius.circular(100)),
-                  child: Image.asset(
-                    'assets/images/${productmodel.image}',
-                    height: 50,
-                    width: 50,
+                Expanded(
+                  child: Container(
+                    height: 90,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2),
+                        borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/${productmodel.image}'),
+                        fit: BoxFit.cover
+                      )
+                    ),
+
                   ),
                 ),
                 const SizedBox(
@@ -154,7 +159,7 @@ class _CartScreenState extends State<CartScreen> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          color: const Color(0xffE2E63B),
+                          color: const Color(0xff999999),
                           borderRadius: BorderRadius.circular(8)),
                       height: 30,
                       width: 30,

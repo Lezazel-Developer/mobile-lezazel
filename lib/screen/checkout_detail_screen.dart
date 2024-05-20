@@ -17,6 +17,19 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final TextEditingController _addressController = TextEditingController();
 
+  void _showSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Checkout success!'),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+    Navigator.pushNamedAndRemoveUntil(context, '/checkout-success', (route) => false);
+
+    setState(() {
+      isLoading = false;
+    });
+  }
   bool isLoading = false;
 
   final _focusNode = FocusNode();
@@ -66,8 +79,19 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           offset: const Offset(0, 10),
                         )
                       ]),
-                  child: Image.asset(
-                    'assets/images/chicken-leg.png',
+                  child: Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      height: 400,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 2),
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/ayamRica.jpeg'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -265,10 +289,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   setState(() {
                     isLoading = true;
                   });
-                  Navigator.pushNamed(context, '/checkout-success');
-                  setState(() {
-                    isLoading = false;
-                  });
+                  handleCheckout();
+                  _showSnackbar(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: lezazelColor,

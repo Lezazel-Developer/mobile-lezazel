@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 double defaultMargin = 30.0;
 
-Color backgroundColor = const Color(0xffDDDBD9);
+Color backgroundColor = const Color(0xffECECEB);
 Color lezazelColor = const Color(0xfffea300);
 Color buttonColor = const Color(0xff015F36);
 Color priceColor = const Color(0xff11BB2D);
-Color altColor = const Color(0xffEEE4D6);
+Color cardColor = const Color(0xffEEE4D6);
 Color whiteColor = const Color(0xffffffff);
 Color greyColor = const Color(0xff9698A9);
 Color backgroundColor2 = const Color(0xff2B2937);
@@ -16,7 +16,7 @@ Color backgroundColor4 = const Color(0xff252836);
 Color backgroundColor5 = const Color(0xff2B2844);
 Color backgroundColor6 = const Color(0xffECEDEF);
 
-Color secondaryTextColor = const Color(0xff999999);
+Color secondaryTextColor = const Color(0xff777777);
 Color subtitleColor = const Color(0xff504F5E);
 Color transparentColor = Colors.transparent;
 Color blackColor = const Color(0xff2E2E2E);

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lezazel_flutter/home/home_page.dart';
-import 'package:lezazel_flutter/home/favorite_page.dart';
+import 'package:lezazel_flutter/home/home.dart';
+import 'package:lezazel_flutter/home/favorite.dart';
+import 'package:lezazel_flutter/screen/contact_screen.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
-
-import '../home/profile.dart';
+import '../home/chat/chat_page.dart';
+import '../thema.dart';
 
 
 var selectedCategory = 0;
@@ -17,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final Color navigationBarColor = Colors.white;
+
   int selectedIndex = 0;
   late PageController pageController;
   @override
@@ -29,17 +30,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        systemNavigationBarColor: navigationBarColor,
+      value: const SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xffDDDDDC),
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        backgroundColor: const Color(0xffEEEEEE),
+        backgroundColor: backgroundColor,
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
           child: WaterDropNavBar(
             bottomPadding: 20,
-            backgroundColor: navigationBarColor,
+            backgroundColor: const Color(0xffDDDDDC),
             onItemSelected: (int index) {
               setState(() {
                 selectedIndex = index;
@@ -62,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 outlinedIcon: Icons.message_outlined,
               ),
               BarItem(
-                filledIcon: Icons.watch_later_sharp,
-                outlinedIcon: Icons.account_circle_outlined,
+                filledIcon: Icons.manage_accounts,
+                outlinedIcon: Icons.manage_accounts_outlined,
               ),
 
             ],
@@ -77,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: const <Widget>[
             HomePage(),
             Center(child: FavoriteScreen()),
-            Center(child: Text('Message')),
-            Center(child: EditProfilePage()),
+            Center(child: MessagePage()),
+            ContactScreen()
           ],
         ),
       ),

@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:io' show Platform;
-
 import '../models/category-model.dart';
 import '../models/product-model.dart';
 import '../widget/title.dart';
@@ -135,13 +135,17 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: Image.asset(
-                        'assets/images/${productModels[index].image}',
-                        height: 120,
-                        width: 120,
+                  Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      height: 300,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/${productModels[index].image}'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -180,6 +184,7 @@ class _HomePageState extends State<HomePage> {
                       color: isFocused ? const Color(0xff2C96F1) : const Color(0xffaaaaaa),
                     ),
                   ),
+                  const SizedBox(height: 20,)
                 ],
               ),
             ),
@@ -266,6 +271,7 @@ class _HomePageState extends State<HomePage> {
 
   ListView _products() {
     return ListView.separated(
+
         padding: const EdgeInsets.symmetric(horizontal: 20),
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -276,7 +282,7 @@ class _HomePageState extends State<HomePage> {
 
   Container buildProduct(ProductModel productModel) {
     return Container(
-      padding: const EdgeInsets.all(30),
+      padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 15),
       decoration: BoxDecoration(
           color: const Color(0xffEEE4D6),
           borderRadius: BorderRadius.circular(14),
@@ -290,12 +296,17 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: const Color(0xfffea300),
-                borderRadius: BorderRadius.circular(100)),
-            child: Image.asset(
-              'assets/images/${productModel.image}',
-              height: 60,
-              width: 60,
+              color: const Color(0xfffea300),
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.asset(
+                'assets/images/${productModel.image}',
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           const SizedBox(
@@ -315,7 +326,8 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   'Rp.${productModel.price}',
                   style: GoogleFonts.manrope(
-                      fontWeight: FontWeight.w100, fontSize: 16),
+                      fontWeight: FontWeight.w800, fontSize: 16, color:  Colors.green,),
+
                 ),
               ],
             ),

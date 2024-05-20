@@ -51,9 +51,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget build(BuildContext context) {
     List<ProductModel> favoriteProducts = products.where((product) => likedList[products.indexOf(product)]).toList();
     return Scaffold(
-      backgroundColor: const Color(0xffEEEEEE),
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xffEEEEEE),
+        backgroundColor: backgroundColor,
         surfaceTintColor: Colors.white,
         title: Text('Favorite List',
             style: GoogleFonts.roboto(
@@ -62,8 +62,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 fontWeight: FontWeight.w700)),
       ),
       body: SafeArea(
-        top: false,
-        bottom: false,
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
@@ -100,7 +98,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           child: Container(
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-                color: const Color(0xffFDFBF6),
+                color: cardColor,
                 borderRadius: BorderRadius.circular(14),
                 boxShadow: [
                   BoxShadow(
@@ -110,14 +108,18 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 ]),
             child: Row(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: const Color(0xfffea300),
-                      borderRadius: BorderRadius.circular(100)),
-                  child: Image.asset(
-                    'assets/images/${productModel.image}',
-                    height: 50,
-                    width: 50,
+                Expanded(
+                  child: Container(
+                    height: 90,
+                    width: 90,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2),
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/${productModel.image}'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(

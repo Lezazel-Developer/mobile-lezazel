@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/thema.dart';
+import 'package:lottie/lottie.dart';
 
 
 class DetailProductScreen extends StatefulWidget {
@@ -42,24 +45,38 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       backgroundColor: backgroundColor,
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Order',
-        backgroundColor: const Color(0xff8E8D8B),
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('You order this product'),
-              action: SnackBarAction(
-                label: 'View Cart',
-                onPressed: () {
-                  Navigator.pushNamed(context, '/cart');
-                },
-              ),
-            ),
-          );
-        },
-        child: const Icon(Icons.shopping_cart, color: Colors.black),
-      ),
+      // floatingActionButton: Column(
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   children: [
+      //     FloatingActionButton(
+      //       tooltip: 'Order',
+      //       backgroundColor: const Color(0xff8E8D8B),
+      //       onPressed: () {
+      //         ScaffoldMessenger.of(context).showSnackBar(
+      //           SnackBar(
+      //             content: Text('You order this product'),
+      //             action: SnackBarAction(
+      //               label: 'View Cart',
+      //               onPressed: () {
+      //                 Navigator.pushNamed(context, '/cart');
+      //               },
+      //             ),
+      //           ),
+      //         );
+      //       },
+      //       child: const Icon(Icons.shopping_cart, color: Colors.black),
+      //     ),
+      //     const SizedBox(height: 16),
+      //     FloatingActionButton(
+      //       tooltip: 'Message',
+      //       backgroundColor: const Color(0xff8E8D8B),
+      //       onPressed: (){
+      //         Navigator.pushNamed(context, '/message');
+      //       },
+      //       child: const Icon(Icons.message, color: Colors.black),
+      //     ),
+      //   ],
+      // ),
       body: NestedScrollView(
           headerSliverBuilder: (context, isScrolled) {
             return [
@@ -147,7 +164,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                             const Icon(Icons.fastfood_rounded,
                                 color: Colors.black, size: 20),
                             Text(
-                              'Address Details',
+                              'Food Details',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: medium,
@@ -159,10 +176,75 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                           height: 12,
                         ),
                         const Text(
-                            'alham dulillahi robbil aalamiin, arrohmaanirrohiim maalikiyaumiddiin iyya kana\' budu waiyyakverv a nastaiin ')
+                            'alham dulillahi robbil aalamiin, arrohmaanirrohiim maalikiyaumiddiin iyya kana\' budu waiyyakverv a nastaiin '),
+
                       ],
                     ),
                   ),
+
+                  const SizedBox(height: 40,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/message');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: const Color(0xff8E8D8B),
+                            ),
+                            color: const Color(0xff8E8D8B),
+                          ),
+                            padding: const EdgeInsets.all(
+                              12,
+                            ),
+                            child: const Icon(Icons.message_rounded, color: Colors.black)
+                        ),
+                      ),
+
+                      GestureDetector(
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text('You order this product'),
+                              action: SnackBarAction(
+                                label: 'View Cart',
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/cart');
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: const Color(0xffEEC27F),
+                            ),
+                            color: lezazelColor,
+                          ),
+                            padding: const EdgeInsets.all(
+                              12,
+                            ),
+                            child: const Center(
+                              child: Text('Add to cart', style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300
+                              ),
+                              ),
+                            )
+                        ),
+                      ),
+                    ],
+                  ),
+                  Center(child: Lottie.asset('assets/jsons/check-out.json', width: 400)),
+
                 ],
               ),
             ),

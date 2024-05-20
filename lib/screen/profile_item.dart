@@ -5,13 +5,23 @@ import 'package:lezazel_flutter/thema.dart';
 import '../widget/profile_form.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  void _showSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Profile changes saved!'),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+  }
+
   bool isHidden = true;
   bool isLoading = false;
 
@@ -83,28 +93,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xffF8F8F8),
+      backgroundColor: backgroundColor,
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: const Color(0xffF8F8F8),
-        elevation: 0,
+
         centerTitle: true,
         title: const Text(
           'Edit Profile',
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.check,
-              color: Colors.green.shade500,
+              color: Colors.green,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              _showSnackbar(context);
             },
           )
         ],
