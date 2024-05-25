@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lezazel_flutter/extensions/extensions.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -23,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
                     width: 370,
                   ),
                 ),
-                const SizedBox(height: 50),
+                50.0.h,
                 const Text(
                   'Welcome to Lezazel',
                   style: TextStyle(fontSize: 35, fontWeight: FontWeight.w800),
@@ -37,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w100),
                 ),
-                const SizedBox(height: 50),
+                50.0.h,
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/sign-up');
@@ -58,13 +59,13 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 27),
+                27.0.h,
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/sign-in');
                   },
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(width: 2, color: Colors.grey),
+                    side: const BorderSide(color: Colors.grey),
                     fixedSize: const Size(370, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),

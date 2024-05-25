@@ -1,0 +1,43 @@
+class MainAssets{
+  MainAssets._();
+
+  static const path = 'assets/images';
+
+  // splash
+  static const splash = '$path/splash.png';
+
+  // cart icon
+  static const add = '$path/add.png';
+  static const min = '$path/minus.png';
+  static const delete = '$path/delete.png';
+
+  // product
+  static const ayamBakar = '$path/ayamBakar.jpeg';
+  static const ayamGoreng = '$path/ayamGoreng.jpeg';
+  static const ayamPenyet = '$path/ayamPenyet.jpeg';
+  static const ayamRica = '$path/ayamRica.jpeg';
+
+  // carousel
+  static const carousel1 = '$path/carousel1.png';
+  static const carousel2 = '$path/carousel2.png';
+  static const carousel3 = '$path/carousel3.png';
+
+  // profile
+  static const profile = '$path/profile.png';
+
+  //detail product
+  static const detailProduct = '$path/shopping-bag.png';
+  static const disableLike = '$path/disablelike.png';
+  static const enableLike = '$path/enablelike.png';
+  static const money = '$path/money.png';
+  static const detail = '$path/detail_image.jpg';
+  static const star = '$path/star.png';
+  static const success = '$path/success.png';
+
+  // checkout
+  static const iconLine = '$path/icon_line.png';
+
+  //favorite
+  static const heart = '$path/heart.png';
+
+}

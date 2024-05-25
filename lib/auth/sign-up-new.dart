@@ -6,6 +6,8 @@ import '../widget/button.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
+  static const String routeName = '/sign-up';
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }

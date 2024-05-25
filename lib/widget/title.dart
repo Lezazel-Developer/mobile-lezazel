@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lezazel_flutter/preferences/preferences.dart';
 
 class TitleHome extends StatelessWidget {
   final String title;
@@ -12,11 +13,11 @@ class TitleHome extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: SB.dp20),
         child: Text(
           title,
           style: const TextStyle(
-            fontSize: 22,
+            fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
