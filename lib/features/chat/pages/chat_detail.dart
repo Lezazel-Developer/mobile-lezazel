@@ -13,6 +13,7 @@ class DetailChat extends StatelessWidget {
       return PreferredSize(
           preferredSize: const Size.fromHeight(70),
           child: AppBar(
+            surfaceTintColor: Colors.white,
             backgroundColor: backgroundColor,
             centerTitle: false,
             title: Row(

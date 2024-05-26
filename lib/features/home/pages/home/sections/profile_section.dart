@@ -5,6 +5,9 @@ import 'package:lezazel_flutter/preferences/preferences.dart';
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
+  final String gender = 'girl';
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,10 +36,10 @@ class Profile extends StatelessWidget {
           ),
           GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/my-profile');
+                Navigator.pushNamed(context, '/edit-profile');
               },
-              child: Image.asset(MainAssets.profile,
-                  width: 60, height: 60)),
+              child: Image.asset(gender == 'man' ? MainAssets.girlProfile : MainAssets.manProfile,
+                  width: 50, height: 50)),
         ],
       ),
     );

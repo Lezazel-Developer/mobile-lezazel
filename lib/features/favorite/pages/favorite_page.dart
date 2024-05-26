@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lezazel_flutter/preferences/assets.dart';
+import 'package:lezazel_flutter/preferences/preferences.dart';
 import '../../../../thema.dart';
 import 'package:lezazel_flutter/widget/widget.dart';
 import '../widgets/widget.dart';

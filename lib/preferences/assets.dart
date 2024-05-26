@@ -23,7 +23,8 @@ class MainAssets{
   static const carousel3 = '$path/carousel3.png';
 
   // profile
-  static const profile = '$path/profile.png';
+  static const manProfile = '$path/manProfile.png';
+  static const girlProfile = '$path/girlProfile.png';
 
   //detail product
   static const detailProduct = '$path/shopping-bag.png';
