@@ -38,7 +38,7 @@ class Profile extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, '/edit-profile');
               },
-              child: Image.asset(gender == 'man' ? MainAssets.girlProfile : MainAssets.manProfile,
+              child: Image.asset(gender == 'girl' ? MainAssets.girlProfile : MainAssets.manProfile,
                   width: 50, height: 50)),
         ],
       ),

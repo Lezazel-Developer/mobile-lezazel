@@ -41,4 +41,7 @@ class MainAssets{
   //favorite
   static const heart = '$path/heart.png';
 
+  //auth
+  static const gender = '$path/male-female.png';
+
 }

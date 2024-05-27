@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lezazel_flutter/widget/form.dart';
+import 'package:lezazel_flutter/preferences/assets.dart';
+import 'widget/widget.dart';
 
 import '../widget/button.dart';
 
@@ -16,11 +17,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   bool _isPasswordHidden = true;
   bool _isConfirmPasswordHidden = true;
+
+  String? selectedGender;
+
+
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -89,6 +94,101 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
     }
 
+    Widget content(){
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 70.0),
+            child: CustomField(
+              title: 'Name',
+              controller: nameController,
+              hintText: 'Yudi Oli Samping',
+              prefixIcon: const Icon(Icons.account_box),
+            ),
+          ),
+          CustomField(
+              title: 'Email',
+              prefixIcon: const Icon(Icons.email),
+              hintText: 'example@gmail.com',
+              controller: emailController),
+          CustomField(
+              title: 'Phone number',
+              prefixIcon: const Icon(Icons.phone),
+              hintText: '08**-****-****',
+              controller: phoneController),
+
+          DropdownField(
+            title: 'Gender',
+            prefixIcon: MainAssets.gender,
+            value: selectedGender,
+            items: const [
+              DropdownMenuItem(
+                value: 'Male',
+                child: Text('Male'),
+              ),
+              DropdownMenuItem(
+                value: 'Female',
+                child: Text('Female'),
+              ),
+            ],
+            onChanged: (value) {
+              setState(() {
+                selectedGender = value;
+              });
+            },
+          ),
+
+          CustomField(
+            title: 'Password',
+            obscureText: _isPasswordHidden,
+            prefixIcon: const Icon(Icons.key),
+            suffixIcon: IconButton(
+              onPressed: _togglePasswordVisibility,
+              icon: Icon(_isPasswordHidden
+                  ? Icons.visibility
+                  : Icons.visibility_off),
+            ),
+            controller: passwordController,
+            hintText: 'Enter your password',
+          ),
+          CustomField(
+            title: 'Confirm password',
+            obscureText: _isConfirmPasswordHidden,
+            prefixIcon: const Icon(Icons.lock),
+            suffixIcon: IconButton(
+              onPressed: _toggleConfirmPasswordVisibility,
+              icon: Icon(_isConfirmPasswordHidden
+                  ? Icons.visibility
+                  : Icons.visibility_off),
+            ),
+            controller: confirmPasswordController,
+            hintText: 'Confirm your password',
+          ),
+
+
+          isLoading ? const Padding(
+            padding: EdgeInsets.all(22.0),
+            child: Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.blue),
+              ),
+            ),
+          )
+              : CustomButton(
+            title: 'Sign In',
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/home', (route) => false);
+            },
+          ),
+
+          const SizedBox(height: 24),
+
+        ],
+      );
+    }
+
     Widget footer() {
       return Container(
         margin: const EdgeInsets.only(bottom: 30),
@@ -130,69 +230,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 header(),
-                Padding(
-                  padding: const EdgeInsets.only(top: 70.0),
-                  child: CustomField(
-                    title: 'Name',
-                    controller: nameController,
-                    hintText: 'Yudi Oli Samping',
-                    prefixIcon: const Icon(Icons.account_box),
-                  ),
-                ),
-                CustomField(
-                    title: 'Email',
-                    prefixIcon: const Icon(Icons.email),
-                    hintText: 'example@gmail.com',
-                    controller: emailController),
-                CustomField(
-                    title: 'Phone number',
-                    prefixIcon: const Icon(Icons.phone),
-                    hintText: '08**-****-****',
-                    controller: phoneController),
-                CustomField(
-                  title: 'Password',
-                  obscureText: _isPasswordHidden,
-                  prefixIcon: const Icon(Icons.key),
-                  suffixIcon: IconButton(
-                    onPressed: _togglePasswordVisibility,
-                    icon: Icon(_isPasswordHidden
-                        ? Icons.visibility
-                        : Icons.visibility_off),
-                  ),
-                  controller: passwordController,
-                  hintText: 'Enter your password',
-                ),
-                CustomField(
-                  title: 'Confirm password',
-                  obscureText: _isConfirmPasswordHidden,
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    onPressed: _toggleConfirmPasswordVisibility,
-                    icon: Icon(_isConfirmPasswordHidden
-                        ? Icons.visibility
-                        : Icons.visibility_off),
-                  ),
-                  controller: confirmPasswordController,
-                  hintText: 'Confirm your password',
-                ),
-                isLoading
-                    ? const Padding(
-                        padding: EdgeInsets.all(22.0),
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.blue), // Ganti warna di sini
-                          ),
-                        ),
-                      )
-                    : CustomButton(
-                        title: 'Sign In',
-                        onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, '/home', (route) => false);
-                        },
-                      ),
-                const SizedBox(height: 24),
+
+                content(),
+
                 footer(),
               ],
             ),

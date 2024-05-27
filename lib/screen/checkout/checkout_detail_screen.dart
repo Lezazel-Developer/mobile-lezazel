@@ -101,26 +101,27 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ),
                 ),
                 20.0.w,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Chicken Leg',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Chicken Leg',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'Rp. 20.000',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 16,
+                      Text(
+                        'Rp. 20.000',
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                50.0.w,
                 const Text(
                   'x1',
                   style: TextStyle(fontSize: 20, color: Colors.black),
