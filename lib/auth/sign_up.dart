@@ -10,22 +10,21 @@ class SignUpScreen extends StatefulWidget {
   static const String routeName = '/sign-up';
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   bool _isPasswordHidden = true;
   bool _isConfirmPasswordHidden = true;
 
   String? selectedGender;
-
-
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -42,6 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void dispose() {
     nameController.dispose();
+    usernameController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
     emailController.dispose();
@@ -53,19 +53,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    handleSignIn() async {
-      setState(() {
-        isLoading = true;
-      });
-
-      // Simulate login process
-      await Future.delayed(const Duration(seconds: 2));
-
-      setState(() {
-        isLoading = false;
-      });
-    }
-
     Widget header() {
       return Container(
         margin: const EdgeInsets.only(top: 30),
@@ -94,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
     }
 
-    Widget content(){
+    Widget content() {
       return Column(
         children: [
           Padding(
@@ -107,6 +94,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ),
           CustomField(
+              title: 'Username',
+              prefixIcon: const Icon(Icons.perm_contact_calendar_rounded),
+              hintText: 'example_11',
+              controller: usernameController),
+          CustomField(
               title: 'Email',
               prefixIcon: const Icon(Icons.email),
               hintText: 'example@gmail.com',
@@ -116,7 +108,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               prefixIcon: const Icon(Icons.phone),
               hintText: '08**-****-****',
               controller: phoneController),
-
           DropdownField(
             title: 'Gender',
             prefixIcon: MainAssets.gender,
@@ -137,16 +128,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               });
             },
           ),
-
           CustomField(
             title: 'Password',
             obscureText: _isPasswordHidden,
             prefixIcon: const Icon(Icons.key),
             suffixIcon: IconButton(
               onPressed: _togglePasswordVisibility,
-              icon: Icon(_isPasswordHidden
-                  ? Icons.visibility
-                  : Icons.visibility_off),
+              icon: Icon(
+                  _isPasswordHidden ? Icons.visibility : Icons.visibility_off),
             ),
             controller: passwordController,
             hintText: 'Enter your password',
@@ -164,27 +153,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
             controller: confirmPasswordController,
             hintText: 'Confirm your password',
           ),
-
-
-          isLoading ? const Padding(
-            padding: EdgeInsets.all(22.0),
-            child: Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.blue),
-              ),
-            ),
-          )
+          isLoading
+              ? const Padding(
+                  padding: EdgeInsets.all(22.0),
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                    ),
+                  ),
+                )
               : CustomButton(
-            title: 'Sign In',
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/home', (route) => false);
-            },
-          ),
-
+                  title: 'Sign In',
+                  onPressed: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/home', (route) => false);
+                  },
+                ),
           const SizedBox(height: 24),
-
         ],
       );
     }
@@ -230,9 +215,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 header(),
-
                 content(),
-
                 footer(),
               ],
             ),

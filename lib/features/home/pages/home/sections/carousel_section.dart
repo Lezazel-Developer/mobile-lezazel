@@ -20,7 +20,7 @@ class CarouselHome extends StatelessWidget {
               (image) => SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8),
+              margin: const EdgeInsets.symmetric(horizontal: 8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(

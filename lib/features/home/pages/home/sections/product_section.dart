@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lezazel_flutter/models/product-model.dart';
+import 'package:lezazel_flutter/models/product_model.dart';
 import 'package:lezazel_flutter/preferences/preferences.dart';
 
 class Product extends StatelessWidget {

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 part of '../page.dart';
 
 class _Price extends StatelessWidget {

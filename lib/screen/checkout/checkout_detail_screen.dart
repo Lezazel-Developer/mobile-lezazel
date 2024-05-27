@@ -3,7 +3,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/extensions/extensions.dart';
 import 'package:lezazel_flutter/preferences/assets.dart';
-import 'package:lezazel_flutter/widget/payment-items.dart';
+import 'package:lezazel_flutter/widget/payment_items.dart';
 import 'package:lezazel_flutter/thema.dart';
 import 'package:lottie/lottie.dart';
 
@@ -15,10 +15,10 @@ class CheckoutScreen extends StatefulWidget {
   static const String routeName = '/checkout-detail';
 
   @override
-  _CheckoutScreenState createState() => _CheckoutScreenState();
+  CheckoutScreenState createState() => CheckoutScreenState();
 }
 
-class _CheckoutScreenState extends State<CheckoutScreen> {
+class CheckoutScreenState extends State<CheckoutScreen> {
   final TextEditingController _addressController = TextEditingController();
 
   void _showSnackbar(BuildContext context) {

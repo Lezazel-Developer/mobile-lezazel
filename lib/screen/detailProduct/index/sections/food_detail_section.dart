@@ -2,9 +2,7 @@ part of '../page.dart';
 
 
 class _FoodDetail extends StatelessWidget {
-  const _FoodDetail({
-    super.key,
-  });
+  const _FoodDetail();
 
   @override
   Widget build(BuildContext context) {

@@ -67,13 +67,15 @@ class MessagePage extends StatelessWidget {
 
     Widget content() {
       return Expanded(
-          child: Container(
-              color: backgroundColor,
-              width: double.infinity,
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-                children: const [ChatTile()],
-              )));
+        child: Container(
+          color: backgroundColor,
+          width: double.infinity,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            children: const [ChatTile()],
+          ),
+        ),
+      );
     }
 
     return Scaffold(

@@ -2,9 +2,7 @@
 part of '../page.dart';
 
 class _ContentContact extends StatelessWidget {
-  const _ContentContact({
-    super.key,
-  });
+  const _ContentContact();
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +37,20 @@ class _ContentContact extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: (){},
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(lezazelColor),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            backgroundColor: WidgetStateProperty.all(lezazelColor),
+            foregroundColor: WidgetStateProperty.all(Colors.white),
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            padding: MaterialStateProperty.all<EdgeInsets>(
+            padding: WidgetStateProperty.all<EdgeInsets>(
               const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
-            textStyle: MaterialStateProperty.all<TextStyle>(
+            textStyle: WidgetStateProperty.all<TextStyle>(
               const TextStyle(fontSize: 16),
             ),
-            minimumSize: MaterialStateProperty.all<Size>(
+            minimumSize: WidgetStateProperty.all<Size>(
               const Size(double.infinity, 40),
             ),
           ),

@@ -1,9 +1,7 @@
 part of '../page.dart';
 
 class _InputContact extends StatelessWidget {
-  const _InputContact({
-    super.key,
-  });
+  const _InputContact();
 
   @override
   Widget build(BuildContext context) {

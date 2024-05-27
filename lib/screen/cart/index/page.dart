@@ -89,7 +89,7 @@ class CartScreen extends StatelessWidget {
       );
     }
 
-    Widget CustomBottomNav(){
+    Widget customButtonNav(){
       return Container(
         margin: EdgeInsets.symmetric(
             horizontal: defaultMargin,
@@ -140,7 +140,7 @@ class CartScreen extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: header(),
       body: content(),
-      bottomNavigationBar: CustomBottomNav(),
+      bottomNavigationBar: customButtonNav(),
     );
   }
 }

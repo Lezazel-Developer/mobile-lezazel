@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/thema.dart';
 import 'package:lottie/lottie.dart';
-import '../../models/product-model.dart';
+import '../../models/product_model.dart';
 
 export 'pages/favorite_page.dart';
 
@@ -52,9 +52,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<ProductModel> favoriteProducts = products
-        .where((product) => likedList[products.indexOf(product)])
-        .toList();
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -215,7 +212,7 @@ class EmptyFavorite extends StatelessWidget {
           ElevatedButton(
               style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(const Color(0xfffea300)),
+                    WidgetStateProperty.all(const Color(0xfffea300)),
               ),
               onPressed: () {},
               child: const Text(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lezazel_flutter/models/category-model.dart';
+import 'package:lezazel_flutter/models/category_model.dart';
 
 
 class CategoryProduct extends StatefulWidget {
@@ -62,6 +62,5 @@ class _CategoryProductState extends State<CategoryProduct> {
         itemCount: Category.all().length,
       ),
     );
-    ();
   }
 }

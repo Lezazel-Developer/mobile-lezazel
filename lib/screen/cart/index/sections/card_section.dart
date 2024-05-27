@@ -2,7 +2,7 @@
 part of '../page.dart';
 
 class _CardSection extends StatelessWidget {
-  const _CardSection({super.key});
+  const _CardSection();
 
   @override
   Widget build(BuildContext context) {

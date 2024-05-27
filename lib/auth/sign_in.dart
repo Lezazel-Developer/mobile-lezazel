@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lezazel_flutter/auth/widget/customField.dart';
+import 'package:lezazel_flutter/auth/widget/custom_field.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widget/button.dart';
@@ -10,10 +10,10 @@ class SignInScreen extends StatefulWidget {
   static const String routeName = '/sign-in';
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  SignInScreenState createState() => SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class SignInScreenState extends State<SignInScreen> {
   final TextEditingController passwordController =
       TextEditingController(text: '');
   final TextEditingController emailController = TextEditingController(text: '');
