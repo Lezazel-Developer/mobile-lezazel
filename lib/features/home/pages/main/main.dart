@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(30.0)),
           child: WaterDropNavBar(
             bottomPadding: 20,
-            backgroundColor: const Color(0xffDDDDDC),
+            waterDropColor: lezazelColor,
             onItemSelected: (int index) {
               setState(() {
                 selectedIndex = index;
