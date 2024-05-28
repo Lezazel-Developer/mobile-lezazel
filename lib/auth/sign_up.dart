@@ -111,8 +111,8 @@ class SignUpScreenState extends State<SignUpScreen> {
           ),
           CustomField(
               title: 'Username',
-              prefixIcon: const Icon(Icons.perm_contact_calendar_rounded),
-              hintText: 'example_11',
+              prefixIcon: const Icon(Icons.person),
+              hintText: 'yudiolisamping',
               controller: usernameController),
           CustomField(
               title: 'Email',
@@ -224,17 +224,14 @@ class SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24),
+          child: ListView(
               children: [
                 header(),
                 content(),
                 footer(),
               ],
-            ),
           ),
         ),
       ),

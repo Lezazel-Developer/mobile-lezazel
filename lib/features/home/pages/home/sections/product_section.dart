@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lezazel_flutter/extensions/extensions.dart';
 import 'package:lezazel_flutter/models/product_model.dart';
 import 'package:lezazel_flutter/preferences/preferences.dart';
 
@@ -83,7 +84,7 @@ Widget buildProduct(BuildContext context, ProductModel productModel) {
                         children: [
                           Text('Rp.${productModel.price}',
                               style: GoogleFonts.manrope(
-                                fontSize: 16,
+                                fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               )),
@@ -95,8 +96,7 @@ Widget buildProduct(BuildContext context, ProductModel productModel) {
                                 color: const Color(0xffaaaaaa),
                               ),
                           ),
-
-                          const SizedBox(width: 25),
+                          10.0.w,
                           Flexible(
                             child: Text(
                               '4.3',
@@ -107,7 +107,7 @@ Widget buildProduct(BuildContext context, ProductModel productModel) {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 5),
+                          const SizedBox(width: 2),
                           Image.asset(MainAssets.star, width: 15,),
                         ],
                       ),

@@ -23,13 +23,16 @@ class CustomField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.normal,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+              ),
             ),
           ),
           const SizedBox(
@@ -45,20 +48,19 @@ class CustomField extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
-              child: Expanded(
-                child: TextFormField(
-                  controller: controller,
-                  obscureText: obscureText,
-                  decoration: InputDecoration(
-                    prefixIcon: prefixIcon,
-                    suffixIcon: suffixIcon,
-                    hintText: hintText,
-                    hintStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    border: InputBorder.none,
+              child: TextFormField(
+                controller: controller,
+                obscureText: obscureText,
+                decoration: InputDecoration(
+                  prefixIcon: prefixIcon,
+                  suffixIcon: suffixIcon,
+                  hintText: hintText,
+                  hintStyle: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
                   ),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 8), // Atur padding secara vertikal di sini
                 ),
               ),
             ),
