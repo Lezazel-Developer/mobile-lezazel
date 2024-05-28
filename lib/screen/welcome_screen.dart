@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lezazel_flutter/extensions/extensions.dart';
+import 'package:lezazel_flutter/widget/button.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -20,18 +21,18 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Lottie.asset(
-                    'assets/jsons/welcome.json',
+                    'assets/jsons/check-out.json',
                     width: 370,
                   ),
                 ),
                 50.0.h,
                 const Text(
                   'Welcome to Lezazel',
-                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.w800),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Lorem ipsum dolor elit elit elit Volupta consectetur adipisicing elit. reprehenderit iusto  .',
+                  'Dengan bahan dasar ayam pedaging sebagai pilar protein, lezazel tak hanya memberikan fleksibilitas dinamis, tapi juga kelezatan dalam setiap gigitannya .',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Color(0xff777777),
@@ -39,34 +40,20 @@ class WelcomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.w100),
                 ),
                 50.0.h,
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/sign-up');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffFEA300),
-                    fixedSize: const Size(370, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  child: const Text(
-                    'Create an Account',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 16,
-                    ),
-                  ),
+                CustomButton(
+                    title: 'Create an account',
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/sign-up');
+                    }
                 ),
-                27.0.h,
+                20.0.h,
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/sign-in');
                   },
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.grey),
-                    fixedSize: const Size(370, 50),
+                    fixedSize: const Size(370, 45),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),

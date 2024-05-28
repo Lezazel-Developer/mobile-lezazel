@@ -6,6 +6,7 @@ import 'package:lezazel_flutter/thema.dart';
 
 part 'sections/food_detail_section.dart';
 part 'sections/price_section.dart';
+part 'sections/familiar_section.dart';
 
 
 
@@ -26,7 +27,6 @@ class _DetailProductScreenState extends State<DetailProductScreen>
   Animation<Offset>? _slideAnimation;
   Animation<double>? _fadeAnimation;
 
-  int index = -1;
 
   String shoppingBag = 'assets/images/shopping-bag.png';
   String enableLike = 'assets/images/enablelike.png';
@@ -39,16 +39,6 @@ class _DetailProductScreenState extends State<DetailProductScreen>
     'assets/images/ayamPenyet.jpeg'
   ];
 
-  List familiarProduct = [
-    'assets/images/ayamBakar.jpeg',
-    'assets/images/ayamGoreng.jpeg',
-    'assets/images/ayamPenyet.jpeg',
-    'assets/images/ayamRica.jpeg',
-    'assets/images/ayamBakar.jpeg',
-    'assets/images/ayamGoreng.jpeg',
-    'assets/images/ayamPenyet.jpeg',
-    'assets/images/ayamRica.jpeg',
-  ];
 
   //NOTE: SNACKBAR
   @override
@@ -199,20 +189,7 @@ class _DetailProductScreenState extends State<DetailProductScreen>
       Navigator.of(context).pop();
     }
 
-    //NOTE: CARD FAMILIR PRODUCT
-    Widget familiarProductCard(String imageUrl) {
-      return Container(
-        width: 80,
-        height: 80,
-        margin: const EdgeInsets.only(
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(imageUrl)),
-          borderRadius: BorderRadius.circular(12 / 2),
-        ),
-      );
-    }
+
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
@@ -292,32 +269,8 @@ class _DetailProductScreenState extends State<DetailProductScreen>
                   const _FoodDetail(),
 
                   40.0.h,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          overflow: TextOverflow.ellipsis,
-                          'Familiar Products',
-                          style: TextStyle(fontSize: 16, fontWeight: bold),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: familiarProduct.map((image) {
-                            index++;
-                            return Container(
-                                margin: EdgeInsets.only(
-                                    left: index == 0 ? defaultMargin : 0),
-                                child: familiarProductCard(image));
-                          }).toList(),
-                        ),
-                      )
-                    ],
-                  ),
+
+                  const _FamiliarProduct(),
 
                   50.0.h,
                   // NOTE: BUTTON
