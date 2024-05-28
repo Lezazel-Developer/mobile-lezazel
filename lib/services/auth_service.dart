@@ -1,10 +1,9 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:lezazel_flutter/models/user_model.dart';
-import 'package:dio/dio.dart' as dio;
 
 class AuthService {
-  static const String baseUrl = "https://www.lezazelfood.shop/api/";
-
-  final dio.Dio _dio = dio.Dio();
+  static const String baseUrl = "https://www.lezazelfood.shop/api";
 
   Future<UserModel> register({
     required String name,
@@ -15,26 +14,25 @@ class AuthService {
     required String password,
   }) async {
     String url = '$baseUrl/register';
-    final response = await _dio.post(
-      url,
-      data: {
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode({
         "name": name,
         "username": username,
         "email": email,
         "phone": phone,
         "gender": gender,
         "password": password,
-      },
-      options: dio.Options(
-        headers: {
-          "Content-Type": "application/json",
-        },
-      ),
+      }),
     );
+    print(response.body);
     if (response.statusCode == 200) {
-      return UserModel.fromJson(response.data);
+      return UserModel.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception(response.data["message"]);
+      throw Exception(jsonDecode(response.body)["message"]);
     }
   }
 
@@ -43,35 +41,31 @@ class AuthService {
     required String password,
   }) async {
     String url = '$baseUrl/login';
-    final response = await _dio.post(
-      url,
-      data: {
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode({
         "email": email,
         "password": password,
-      },
-      options: dio.Options(
-        headers: {
-          "Content-Type": "application/json",
-        },
-      )
+      }),
     );
     if (response.statusCode == 200) {
-      return UserModel.fromJson(response.data);
+      return UserModel.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception(response.data["message"]);
+      throw Exception(jsonDecode(response.body)["message"]);
     }
   }
 
   Future<void> logout(String token) async {
     String url = '$baseUrl/logout';
-    final response = await _dio.post(
-      url,
-      options: dio.Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $token",
-        },
-      ),
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      },
     );
     if (response.statusCode != 200) {
       throw Exception("Failed to logout");

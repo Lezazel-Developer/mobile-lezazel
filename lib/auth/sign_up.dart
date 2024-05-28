@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:lezazel_flutter/preferences/assets.dart';
 import 'package:lezazel_flutter/providers/auth_provider.dart';
@@ -59,14 +56,34 @@ class SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    Future<void> handleSignUp() async {
-      if (await authProvider.register(
-          name: nameController.text,
-          username: usernameController.text,
-          email: emailController.text,
-          phone: phoneController.text,
-          gender: selectedGender!,
-          password: passwordController.text)) ;
+
+    handleSignUp() async {
+      try {
+        setState(() {
+          isLoading = true;
+        });
+        bool isRegistered = await authProvider.register(
+            name: nameController.text,
+            username: usernameController.text,
+            email: emailController.text,
+            phone: phoneController.text,
+            gender: selectedGender ?? 'Male',
+            password: passwordController.text);
+        setState(() {
+          isLoading = false;
+        });
+        if (isRegistered) {
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        } else {
+          throw Exception();
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Registration Failed: $e'),
+          ),
+        );
+      }
     }
 
     Widget header() {
@@ -180,10 +197,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                 )
               : CustomButton(
                   title: 'Sign In',
-                  onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/home', (route) => false);
-                  },
+                  onPressed: handleSignUp,
                 ),
           const SizedBox(height: 24),
         ],
@@ -209,7 +223,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     context, '/sign-in', (route) => false);
               },
               child: const Text(
-                'Sign In',
+                'Sign Up',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -222,19 +236,16 @@ class SignUpScreenState extends State<SignUpScreen> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                header(),
-                content(),
-                footer(),
-              ],
-            ),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24),
+          child: ListView(
+            children: [
+              header(),
+              content(),
+              footer(),
+            ],
           ),
         ),
       ),
