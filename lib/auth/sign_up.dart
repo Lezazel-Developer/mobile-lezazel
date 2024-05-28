@@ -1,5 +1,10 @@
+import 'dart:async';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:lezazel_flutter/preferences/assets.dart';
+import 'package:lezazel_flutter/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 import 'widget/widget.dart';
 
 import '../widget/button.dart';
@@ -53,6 +58,17 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    Future<void> handleSignUp() async {
+      if (await authProvider.register(
+          name: nameController.text,
+          username: usernameController.text,
+          email: emailController.text,
+          phone: phoneController.text,
+          gender: selectedGender!,
+          password: passwordController.text)) ;
+    }
+
     Widget header() {
       return Container(
         margin: const EdgeInsets.only(top: 30),
