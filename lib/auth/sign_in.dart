@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lezazel_flutter/auth/widget/custom_field.dart';
 import 'package:lezazel_flutter/auth/widget/loading_button.dart';
-import 'package:lezazel_flutter/extensions/extensions.dart';
 import 'package:lezazel_flutter/providers/auth_provider.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -32,27 +31,35 @@ class SignInScreenState extends State<SignInScreen> {
     });
   }
 
+  void handleSignIn() async {
+    setState(() {
+      isLoading = true;
+    });
+    bool success = await Provider.of<AuthProvider>(context, listen: false).login(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+
+    setState(() {
+      isLoading = false;
+    });
+
+    if (success) {
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(
+          'Login failed',
+          textAlign: TextAlign.center,
+        ),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
-
-    handleSignIn() async {
-      setState(() {
-        isLoading = true;
-      });
-      if (await authProvider.login(
-          email: emailController.text, password: passwordController.text)) {
-        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(
-            'Login failed',
-            textAlign: TextAlign.center,
-          ),
-        ));
-      }
-    }
 
     Widget header() {
       return Container(
@@ -105,14 +112,14 @@ class SignInScreenState extends State<SignInScreen> {
             controller: passwordController,
             hintText: 'Enter your password',
           ),
-          25.0.h,
+          const SizedBox(height: 25),
           isLoading
               ? const LoadingButton()
               : CustomButton(
                   title: 'Sign In',
                   onPressed: handleSignIn,
                 ),
-          24.0.h,
+          const SizedBox(height: 24),
         ],
       );
     }

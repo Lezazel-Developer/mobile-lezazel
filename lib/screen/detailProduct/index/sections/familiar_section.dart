@@ -1,9 +1,7 @@
 part of '../page.dart';
 
 class _FamiliarProduct extends StatefulWidget {
-  const _FamiliarProduct({
-    super.key,
-  });
+  const _FamiliarProduct();
 
   @override
   State<_FamiliarProduct> createState() => _FamiliarProductState();

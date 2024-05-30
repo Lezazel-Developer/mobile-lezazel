@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lezazel_flutter/auth/widget/loading_button.dart';
 import 'package:lezazel_flutter/preferences/assets.dart';
 import 'package:lezazel_flutter/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class SignUpScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -53,39 +55,53 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   bool isLoading = false;
 
-  @override
-  Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
-
-    handleSignUp() async {
+  void handleSignUp() async {
+    if (_formKey.currentState!.validate()) {
       try {
         setState(() {
           isLoading = true;
         });
-        bool isRegistered = await authProvider.register(
-            name: nameController.text,
-            username: usernameController.text,
-            email: emailController.text,
-            phone: phoneController.text,
-            gender: selectedGender ?? 'Male',
-            password: passwordController.text);
+        bool isRegistered = await Provider.of<AuthProvider>(context, listen: false).register(
+          name: nameController.text,
+          username: usernameController.text,
+          email: emailController.text,
+          phone: phoneController.text,
+          gender: selectedGender ?? 'Male',
+          password: passwordController.text,
+        );
         setState(() {
           isLoading = false;
         });
         if (isRegistered) {
           Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
         } else {
-          throw Exception();
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              'Registration failed',
+              textAlign: TextAlign.center,
+            ),
+          ));
         }
       } catch (e) {
+        setState(() {
+          isLoading = false;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Registration Failed: $e'),
+            backgroundColor: Colors.red,
+            content: Text(
+              'Registration Failed: $e',
+              textAlign: TextAlign.center,
+            ),
           ),
         );
       }
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     Widget header() {
       return Container(
         margin: const EdgeInsets.only(top: 30),
@@ -115,92 +131,131 @@ class SignUpScreenState extends State<SignUpScreen> {
     }
 
     Widget content() {
-      return Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 70.0),
-            child: CustomField(
-              title: 'Name',
-              controller: nameController,
-              hintText: 'Yudi Oli Samping',
-              prefixIcon: const Icon(Icons.account_box),
+      return Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 70.0),
+              child: CustomField(
+                title: 'Name',
+                controller: nameController,
+                hintText: 'Yudi Oli Samping',
+                prefixIcon: const Icon(Icons.account_box),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
+              ),
             ),
-          ),
-          CustomField(
+            CustomField(
               title: 'Username',
               prefixIcon: const Icon(Icons.person),
               hintText: 'yudiolisamping',
-              controller: usernameController),
-          CustomField(
+              controller: usernameController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your username';
+                }
+                return null;
+              },
+            ),
+            CustomField(
               title: 'Email',
               prefixIcon: const Icon(Icons.email),
               hintText: 'example@gmail.com',
-              controller: emailController),
-          CustomField(
+              controller: emailController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
+            ),
+            CustomField(
               title: 'Phone number',
               prefixIcon: const Icon(Icons.phone),
               hintText: '08**-****-****',
-              controller: phoneController),
-          DropdownField(
-            title: 'Gender',
-            prefixIcon: MainAssets.gender,
-            value: selectedGender,
-            items: const [
-              DropdownMenuItem(
-                value: 'Male',
-                child: Text('Male'),
-              ),
-              DropdownMenuItem(
-                value: 'Female',
-                child: Text('Female'),
-              ),
-            ],
-            onChanged: (value) {
-              setState(() {
-                selectedGender = value;
-              });
-            },
-          ),
-          CustomField(
-            title: 'Password',
-            obscureText: _isPasswordHidden,
-            prefixIcon: const Icon(Icons.key),
-            suffixIcon: IconButton(
-              onPressed: _togglePasswordVisibility,
-              icon: Icon(
-                  _isPasswordHidden ? Icons.visibility : Icons.visibility_off),
+              controller: phoneController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your phone number';
+                }
+                return null;
+              },
             ),
-            controller: passwordController,
-            hintText: 'Enter your password',
-          ),
-          CustomField(
-            title: 'Confirm password',
-            obscureText: _isConfirmPasswordHidden,
-            prefixIcon: const Icon(Icons.lock),
-            suffixIcon: IconButton(
-              onPressed: _toggleConfirmPasswordVisibility,
-              icon: Icon(_isConfirmPasswordHidden
-                  ? Icons.visibility
-                  : Icons.visibility_off),
-            ),
-            controller: confirmPasswordController,
-            hintText: 'Confirm your password',
-          ),
-          isLoading
-              ? const Padding(
-                  padding: EdgeInsets.all(22.0),
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                    ),
-                  ),
-                )
-              : CustomButton(
-                  title: 'Sign In',
-                  onPressed: handleSignUp,
+            DropdownField(
+              title: 'Gender',
+              prefixIcon: MainAssets.gender,
+              value: selectedGender,
+              items: const [
+                DropdownMenuItem(
+                  value: 'Male',
+                  child: Text('Male'),
                 ),
-          const SizedBox(height: 24),
-        ],
+                DropdownMenuItem(
+                  value: 'Female',
+                  child: Text('Female'),
+                ),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  selectedGender = value;
+                });
+              },
+            ),
+            CustomField(
+              title: 'Password',
+              obscureText: _isPasswordHidden,
+              prefixIcon: const Icon(Icons.key),
+              suffixIcon: IconButton(
+                onPressed: _togglePasswordVisibility,
+                icon: Icon(
+                    _isPasswordHidden ? Icons.visibility : Icons.visibility_off),
+              ),
+              controller: passwordController,
+              hintText: 'Enter your password',
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
+            ),
+            CustomField(
+              title: 'Confirm password',
+              obscureText: _isConfirmPasswordHidden,
+              prefixIcon: const Icon(Icons.lock),
+              suffixIcon: IconButton(
+                onPressed: _toggleConfirmPasswordVisibility,
+                icon: Icon(_isConfirmPasswordHidden
+                    ? Icons.visibility
+                    : Icons.visibility_off),
+              ),
+              controller: confirmPasswordController,
+              hintText: 'Confirm your password',
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please confirm your password';
+                }
+                if (value != passwordController.text) {
+                  return 'Passwords do not match';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 25),
+            isLoading
+                ? const LoadingButton()
+                : CustomButton(
+                    title: 'Sign Up',
+                    onPressed: handleSignUp,
+                  ),
+            const SizedBox(height: 24),
+          ],
+        ),
       );
     }
 
@@ -223,7 +278,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     context, '/sign-in', (route) => false);
               },
               child: const Text(
-                'Sign Up',
+                'Sign In',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -241,11 +296,11 @@ class SignUpScreenState extends State<SignUpScreen> {
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 24),
           child: ListView(
-              children: [
-                header(),
-                content(),
-                footer(),
-              ],
+            children: [
+              header(),
+              content(),
+              footer(),
+            ],
           ),
         ),
       ),

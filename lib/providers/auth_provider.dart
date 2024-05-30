@@ -27,6 +27,7 @@ class AuthProvider with ChangeNotifier {
           gender: gender,
           password: password);
       _user = user;
+      notifyListeners();
       return true;
     } catch (e) {
       print(e);
@@ -39,9 +40,8 @@ class AuthProvider with ChangeNotifier {
     required String password,
   }) async {
     try {
-      UserModel user = await AuthService().login(
-          email: email,
-          password: password);
+      UserModel user =
+          await AuthService().login(email: email, password: password);
       _user = user;
       return true;
     } catch (e) {

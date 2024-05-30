@@ -7,6 +7,7 @@ class CustomField extends StatelessWidget {
   final Icon prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const CustomField({
     super.key,
@@ -16,6 +17,7 @@ class CustomField extends StatelessWidget {
     required this.hintText,
     this.obscureText = false,
     this.controller,
+    this.validator,
   });
 
   @override
@@ -23,47 +25,38 @@ class CustomField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-              ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
             ),
           ),
           const SizedBox(
             height: 12,
           ),
-          Container(
-            height: 50,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Center(
-              child: TextFormField(
-                controller: controller,
-                obscureText: obscureText,
-                decoration: InputDecoration(
-                  prefixIcon: prefixIcon,
-                  suffixIcon: suffixIcon,
-                  hintText: hintText,
-                  hintStyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 8), // Atur padding secara vertikal di sini
-                ),
+          TextFormField(
+            controller: controller,
+            obscureText: obscureText,
+            decoration: InputDecoration(
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
+              hintText: hintText,
+              hintStyle: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+              fillColor: Colors.grey[200],
+              filled: true,
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 16.0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0),
+                borderSide: BorderSide.none,
               ),
             ),
+            validator: validator,
           ),
         ],
       ),

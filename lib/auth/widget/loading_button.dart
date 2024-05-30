@@ -3,8 +3,8 @@ import 'package:lezazel_flutter/thema.dart';
 
 class LoadingButton extends StatelessWidget {
   const LoadingButton({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -28,11 +28,12 @@ class AuthService {
         "password": password,
       }),
     );
-    print(response.body);
-    if (response.statusCode == 200) {
-      return UserModel.fromJson(jsonDecode(response.body));
+    final responseData = jsonDecode(response.body);
+
+    if (response.statusCode == 201) {
+      return UserModel.fromJson(responseData);
     } else {
-      throw Exception(jsonDecode(response.body)["message"]);
+      throw Exception(responseData);
     }
   }
 
@@ -51,6 +52,7 @@ class AuthService {
         "password": password,
       }),
     );
+    print(response.body);
     if (response.statusCode == 200) {
       return UserModel.fromJson(jsonDecode(response.body));
     } else {
