@@ -68,7 +68,7 @@ class ChatBubbel extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: greyColor),
+                      side: BorderSide(color: disabledColor),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       )),

@@ -1,8 +1,6 @@
 export 'cart/cart.dart';
 export 'checkout/checkout.dart';
-export 'contact/contact.dart';
 export 'detailProduct/detail_product.dart';
-export '../features/features.dart';
 export 'profile_screen.dart';
 export 'splash_screen.dart';
 export 'welcome_screen.dart';
