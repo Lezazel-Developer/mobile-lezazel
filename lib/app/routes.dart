@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lezazel_flutter/features/home/pages/main/new_main.dart';
 import '../screen/screen.dart';
-
+import 'package:lezazel_flutter/features/features.dart';
 
 Route<dynamic> routes(RouteSettings settings) {
   switch (settings.name){
@@ -8,8 +9,8 @@ Route<dynamic> routes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SignInScreen());
     case SignUpScreen.routeName:
       return MaterialPageRoute(builder: (context) => const SignUpScreen());
-    case HomeScreen.routeName:
-      return MaterialPageRoute(builder: (context) => const HomeScreen());
+    case MainPage.routeName:
+      return MaterialPageRoute(builder: (context) => const MainPage());
     case CartScreen.routeName:
       return MaterialPageRoute(builder: (context) => const CartScreen());
     case DetailProductScreen.routeName:
@@ -26,6 +27,6 @@ Route<dynamic> routes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const MessagePage());
     case DetailChat.routeName:
       return MaterialPageRoute(builder: (context) => const DetailChat());
-    default: return MaterialPageRoute(builder: (context) => const SplashScreen());
+    default: return MaterialPageRoute(builder: (context) => const MainPage());
   }
 }

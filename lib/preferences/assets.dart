@@ -44,4 +44,14 @@ class MainAssets{
   //auth
   static const gender = '$path/male-female.png';
 
+  // navigator icon
+  static const home = '$path/home3.png';
+  static const fav = '$path/heart2.png';
+  static const message = '$path/message2.png';
+  static const contact = '$path/contact2.png';
+  static const bag = '$path/shoppingHome.png';
+
+
+
+
 }

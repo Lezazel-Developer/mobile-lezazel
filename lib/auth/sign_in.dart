@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lezazel_flutter/auth/widget/custom_field.dart';
-import 'package:lezazel_flutter/auth/widget/loading_button.dart';
+import 'widget/widget.dart';
 import 'package:lezazel_flutter/extensions/extensions.dart';
 import 'package:lezazel_flutter/providers/auth_provider.dart';
 import 'package:lottie/lottie.dart';

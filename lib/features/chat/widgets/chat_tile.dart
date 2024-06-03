@@ -54,7 +54,7 @@ class ChatTile extends StatelessWidget {
             ),
             Divider(
               thickness: 1,
-              color: greyColor,
+              color: disabledColor,
             ),
           ],
         ),
