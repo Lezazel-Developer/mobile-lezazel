@@ -56,9 +56,9 @@ class User {
     int id;
     String name;
     String email;
-    String gender;
-    dynamic phone;
-    String username;
+    String? gender;
+    String? phone;
+    String? username;
     String roles;
     dynamic emailVerifiedAt;
     dynamic twoFactorSecret;
