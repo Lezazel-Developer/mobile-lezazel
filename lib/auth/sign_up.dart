@@ -24,7 +24,6 @@ class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
   bool _isPasswordHidden = true;
   bool _isConfirmPasswordHidden = true;
 
@@ -49,7 +48,6 @@ class SignUpScreenState extends State<SignUpScreen> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     emailController.dispose();
-    phoneController.dispose();
     super.dispose();
   }
 
@@ -65,7 +63,6 @@ class SignUpScreenState extends State<SignUpScreen> {
           name: nameController.text,
           username: usernameController.text,
           email: emailController.text,
-          phone: phoneController.text,
           gender: selectedGender ?? 'Male',
           password: passwordController.text,
         );
@@ -170,18 +167,6 @@ class SignUpScreenState extends State<SignUpScreen> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
-                }
-                return null;
-              },
-            ),
-            CustomField(
-              title: 'Phone number',
-              prefixIcon: const Icon(Icons.phone),
-              hintText: '08**-****-****',
-              controller: phoneController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your phone number';
                 }
                 return null;
               },

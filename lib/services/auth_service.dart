@@ -9,7 +9,6 @@ class AuthService {
     required String name,
     required String username,
     required String email,
-    required String phone,
     required String gender,
     required String password,
   }) async {
@@ -23,7 +22,6 @@ class AuthService {
         "name": name,
         "username": username,
         "email": email,
-        "phone": phone,
         "gender": gender,
         "password": password,
       }),
@@ -37,7 +35,7 @@ class AuthService {
     }
   }
 
-  Future<UserModel> login({
+Future<UserModel> login({
     required String email,
     required String password,
   }) async {
@@ -52,11 +50,16 @@ class AuthService {
         "password": password,
       }),
     );
-    print(response.body);
+    
+    print("Response status: ${response.statusCode}");
+    print("Response body: ${response.body}");
+    
+    final responseData = jsonDecode(response.body);
+    
     if (response.statusCode == 200) {
-      return UserModel.fromJson(jsonDecode(response.body));
+      return UserModel.fromJson(responseData);
     } else {
-      throw Exception(jsonDecode(response.body)["message"]);
+      throw Exception(responseData);
     }
   }
 

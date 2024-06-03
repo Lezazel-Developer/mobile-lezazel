@@ -14,7 +14,6 @@ class AuthProvider with ChangeNotifier {
     required String name,
     required String username,
     required String email,
-    required String phone,
     required String gender,
     required String password,
   }) async {
@@ -23,7 +22,6 @@ class AuthProvider with ChangeNotifier {
           name: name,
           username: username,
           email: email,
-          phone: phone,
           gender: gender,
           password: password);
       _user = user;
@@ -40,12 +38,12 @@ class AuthProvider with ChangeNotifier {
     required String password,
   }) async {
     try {
-      UserModel user =
-          await AuthService().login(email: email, password: password);
+      UserModel user = await AuthService().login(email: email, password: password);
       _user = user;
+      notifyListeners();
       return true;
     } catch (e) {
-      Exception(e);
+      print("Login Error: $e");
       return false;
     }
   }

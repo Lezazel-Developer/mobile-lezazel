@@ -19,8 +19,8 @@ class SignInScreen extends StatefulWidget {
 class SignInScreenState extends State<SignInScreen> {
   final TextEditingController passwordController =
       TextEditingController(text: '');
-
   final TextEditingController emailController = TextEditingController(text: '');
+  final _formKey = GlobalKey<FormState>();
 
   bool isHidden = true;
   bool isLoading = false;
@@ -32,10 +32,16 @@ class SignInScreenState extends State<SignInScreen> {
   }
 
   void handleSignIn() async {
+    if (_formKey.currentState?.validate() != true) {
+      return;
+    }
+
     setState(() {
       isLoading = true;
     });
-    bool success = await Provider.of<AuthProvider>(context, listen: false).login(
+
+    bool success =
+        await Provider.of<AuthProvider>(context, listen: false).login(
       email: emailController.text,
       password: passwordController.text,
     );
@@ -59,8 +65,6 @@ class SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
-
     Widget header() {
       return Container(
         margin: const EdgeInsets.only(top: 30),
@@ -90,37 +94,56 @@ class SignInScreenState extends State<SignInScreen> {
     }
 
     Widget content() {
-      return Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 70.0),
-            child: CustomField(
-              title: 'Email',
-              hintText: 'example@gmail.com',
-              prefixIcon: const Icon(Icons.email),
-              controller: emailController,
+      return Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 70.0),
+              child: CustomField(
+                title: 'Email',
+                hintText: 'example@gmail.com',
+                prefixIcon: const Icon(Icons.email),
+                controller: emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
+                },
+              ),
             ),
-          ),
-          CustomField(
-            title: 'Password',
-            obscureText: isHidden,
-            prefixIcon: const Icon(Icons.lock),
-            suffixIcon: IconButton(
-              onPressed: toggleVisibility,
-              icon: Icon(isHidden ? Icons.visibility : Icons.visibility_off),
+            CustomField(
+              title: 'Password',
+              obscureText: isHidden,
+              prefixIcon: const Icon(Icons.lock),
+              suffixIcon: IconButton(
+                onPressed: toggleVisibility,
+                icon: Icon(isHidden ? Icons.visibility : Icons.visibility_off),
+              ),
+              controller: passwordController,
+              hintText: 'Enter your password',
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                } else if (value.length < 6) {
+                  return 'Password must be at least 6 characters';
+                }
+                return null;
+              },
             ),
-            controller: passwordController,
-            hintText: 'Enter your password',
-          ),
-          const SizedBox(height: 25),
-          isLoading
-              ? const LoadingButton()
-              : CustomButton(
-                  title: 'Sign In',
-                  onPressed: handleSignIn,
-                ),
-          const SizedBox(height: 24),
-        ],
+            const SizedBox(height: 25),
+            isLoading
+                ? const LoadingButton()
+                : CustomButton(
+                    title: 'Sign In',
+                    onPressed: handleSignIn,
+                  ),
+            const SizedBox(height: 24),
+          ],
+        ),
       );
     }
 
