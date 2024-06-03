@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           20.0.h,
           const Profile(),
           30.0.h,
-          const CarouselHome(),
+          CarouselHome(),
           30.0.h,
           const TitleHome(title: 'Popular Products'),
           10.0.h,
