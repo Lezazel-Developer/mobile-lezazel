@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lezazel_flutter/thema.dart';
 import 'package:lottie/lottie.dart';
 import '../../models/product_model.dart';
+import '../../preferences/assets.dart';
 
 export 'pages/favorite_page.dart';
 
@@ -162,14 +163,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     onTap: () {
                       _toggleFavorite(index);
                     },
-                    child: Icon(
+                    child: Image.asset(
                       likedList[index]
-                          ? Icons.favorite
-                          : Icons.favorite_outline,
-                      color: likedList[index]
-                          ? Colors.amber
-                          : const Color(0xffFEA300),
-                      size: 30,
+                          ? MainAssets.enableLike
+                          : MainAssets.disableLike,
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lezazel_flutter/extensions/extensions.dart';
+import 'package:lezazel_flutter/preferences/assets.dart';
 import 'package:lezazel_flutter/thema.dart';
 
 part 'sections/food_detail_section.dart';
@@ -29,8 +30,7 @@ class _DetailProductScreenState extends State<DetailProductScreen>
 
 
   String shoppingBag = 'assets/images/shopping-bag.png';
-  String enableLike = 'assets/images/enablelike.png';
-  String disableLike = 'assets/images/disablelike.png';
+
   String foodDesc = 'assets/images/foodDescription.png';
 
   List images = [
@@ -257,7 +257,7 @@ class _DetailProductScreenState extends State<DetailProductScreen>
                       GestureDetector(
                         onTap: _toggleFavorite,
                         child: Image.asset(
-                          isFavorite ? enableLike : disableLike,
+                          isFavorite ? MainAssets.enableLike : MainAssets.disableLike,
                           width: 30,
                         ),
                       ),

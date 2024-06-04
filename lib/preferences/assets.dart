@@ -28,8 +28,7 @@ class MainAssets{
 
   //detail product
   static const detailProduct = '$path/shopping-bag.png';
-  static const disableLike = '$path/disablelike.png';
-  static const enableLike = '$path/enablelike.png';
+
   static const money = '$path/money.png';
   static const detail = '$path/detail_image.jpg';
   static const star = '$path/star.png';
@@ -39,6 +38,8 @@ class MainAssets{
   static const iconLine = '$path/icon_line.png';
 
   //favorite
+  static const disableLike = '$path/disablelike.png';
+  static const enableLike = '$path/enablelike.png';
   static const heart = '$path/heart.png';
 
   //auth

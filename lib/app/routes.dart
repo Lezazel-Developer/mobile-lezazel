@@ -27,6 +27,6 @@ Route<dynamic> routes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const MessagePage());
     case DetailChat.routeName:
       return MaterialPageRoute(builder: (context) => const DetailChat());
-    default: return MaterialPageRoute(builder: (context) => const MainPage());
+    default: return MaterialPageRoute(builder: (context) => const SplashScreen());
   }
 }

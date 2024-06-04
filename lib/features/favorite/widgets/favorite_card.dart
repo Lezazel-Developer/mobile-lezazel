@@ -42,11 +42,10 @@ class FavoriteCard extends StatelessWidget {
               ),
             ],
           )),
-          Icon(
-            Icons.favorite,
-            color: lezazelColor,
-            size: 26,
-          ),
+          Image.asset(
+            MainAssets.enableLike,
+            width: 30,
+          )
         ],
       ),
     );
